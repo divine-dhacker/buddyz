@@ -1007,6 +1007,41 @@ if (typeof correctValue !== 'undefined') {
   <script>
       
 document.addEventListener('DOMContentLoaded', function() {
+
+// Check if quiz ID is in URL
+const urlParams = new URLSearchParams(window.location.search);
+const quizID = urlParams.get('id');
+
+if (quizID) {
+  // Load quiz from Firebase
+  database.ref('quizzes/' + quizID).once('value').then(snapshot => {
+    const quizData = snapshot.val();
+    if (quizData) {
+      // Set name and quizQuestions from loaded quiz
+      document.getElementById('user-name').value = quizData.name + "'s Quiz";
+      quizQuestions = quizData.answers.map(q => ({
+        question: q.question,
+        options: [
+          { text: "Option A", image: "../assets/chips.png" }, // Replace this logic
+          { text: "Option B", image: "../assets/candy.png" },
+          { text: "Option C", image: "../assets/fruits.png" },
+          { text: "Option D", image: "../assets/biscuits.png" }
+        ]
+      }));
+      
+      nameContainer.style.display = 'none';
+      quizContainer.style.display = 'block';
+      currentQuestionIndex = 0;
+      userAnswers = [];
+      renderQuestion();
+    } else {
+      alert("Quiz not found!");
+    }
+  }).catch(error => {
+    console.error("Error loading quiz: ", error);
+  });
+}
+
   const shapesContainer = document.getElementById('bg-shapes');
   
   // Check if the container exists
@@ -1073,6 +1108,8 @@ function sharePage() {
 
 
   </script>
+  
+  
   
   
   <!-- for the shapefull and colorfull designs ends here-->
