@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+       body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+.quiz-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.progress {
+    width: 0%;
+    height: 10px;
+    background-color: #ff69b4;
+    border-radius: 10px;
+}
+
+.question-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.question {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.skip-btn {
+    background-color: #ff69b4;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.option {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.option img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.option span {
+    display: block;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+    <h1>Answer 15 questions</h1>
+    <div class="progress-bar">
+        <div class="progress" id="progress-bar"></div>
+    </div>
+    <div class="question-container">
+        <div class="question" id="question"></div>
+        <button class="skip-btn" id="skip-btn">Skip</button>
+    </div>
+    <div class="options" id="options"></div>
+</div>
+
+    <script>
+        const quizData = [
+    {
+        question: "Which of these describe your character?",
+        answers: [
+            { image: "friendly.png", text: "Friendly" },
+            { image: "graphic.png", text: "Kind" },
+            { image: "assets/emoji.png", text: "Funny" },
+            { image: "serious.png", text: "Serious" }
+        ]
+    },
+    {
+        question: "Which of these describe your character?",
+        answers: [
+            { image: "friendly.png", text: "Friendly" },
+            { image: "graphic.png", text: "Kind" },
+            { image: "assets/emoji.png", text: "Funny" },
+            { image: "serious.png", text: "Serious" }
+        ]
+    }
+    // Add more questions here...
+];
+
+let currentQuestion = 0;
+
+const questionElement = document.getElementById("question");
+const optionsElement = document.getElementById("options");
+const progressBar = document.getElementById("progress-bar");
+const skipButton = document.getElementById("skip-btn");
+
+function displayQuestion() {
+    const question = quizData[currentQuestion].question;
+    const answers = quizData[currentQuestion].answers;
+
+    questionElement.textContent = question;
+
+    optionsElement.innerHTML = "";
+    answers.forEach((answer, index) => {
+        const option = document.createElement("button");
+        option.classList.add("option");
+
+        const image = document.createElement("img");
+        image.src = answer.image;
+
+        const text = document.createElement("span");
+        text.textContent = answer.text;
+
+        option.appendChild(image);
+        option.appendChild(text);
+
+        optionsElement.appendChild(option);
+    });
+
+    updateProgressBar();
+}
+
+function updateProgressBar() {
+    const progress = (currentQuestion / quizData.length) * 100;
+    progressBar.style.width = `${progress}%`;
+}
+
+skipButton.onclick = () => {
+    currentQuestion++;
+    if (currentQuestion >= quizData.length) {
+        // End quiz logic here...
+    } else {
+        displayQuestion();
+    }
+};
+
+displayQuestion();
+    </script>
+</body>
+</html>

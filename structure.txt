@@ -1,0 +1,12 @@
+buddyz/
+│
+├── index.html           # Main page
+├── style.css            # Styling
+├── script.js            # JavaScript functionality
+│
+├── assets/
+│   ├── images/          # Store images like logos, backgrounds, etc.
+│   └── sounds/          # (Optional) Sound effects if needed later
+│
+└── data/
+    └── questions.json   # (Optional) Store quiz questions

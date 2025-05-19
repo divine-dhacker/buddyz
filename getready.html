@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buddyz</title>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />   -->
+  <link rel="stylesheet" href="styles.css"/>
+  
+  <style>
+      
+      .hero {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 10px;
+          align-items: center;
+          justify-content: center;
+          margin: 8px;
+          padding: 13px 3px;
+      }
+      
+      .hero .cover {
+          width: 170px;
+          height: 180px;
+          
+      }
+      
+      .hero .cover img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 20px;
+      }
+      
+      button {
+          width: 92%;
+      }
+      
+      a:hover {
+          background: transparent;
+          color: transparent;
+          text-decoration: none;
+      }
+      
+      .newbutton:active    {
+          scale: 0.9;
+      }
+      
+       .another-links {
+           display: flex;
+           flex-direction: row;
+           gap: 15px;
+       }
+      
+      .another-links a {
+          color: #5b5b5be5;
+          font-size: 13px;
+          font-weight: 700;
+          text-decoration: none;
+          gap: 40px;
+      }
+      
+  </style>
+  
+</head>
+<body>
+  <header>
+    <div class="logo">Buddyz</div>
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+  </header>
+
+  <nav class="sidebar" id="sidebar">
+    <div class="close-btn" id="close-btn">&times;</div>
+    <ul>
+     <li><a href="index.html">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms and Conditions</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">Quiz</a></li>
+      <li><a href="#">Our Blog</a></li>
+    </ul>
+  </nav>
+
+<!-- The only thing that made the footer go to the bottom of the page Starts here-->
+
+  <main class="hero">
+      
+   <button button="disabled" class="animate">👇🏽👇🏽Pick a Quiz Test 👇🏽👇🏽</button>
+    
+   <div class="cover">
+       <a href="game.html">
+     <img src="./assets/Get_started/bffgame.png" class="newbutton">
+       </a>
+   </div>
+   
+   <div class="cover">
+       <a href="./HTML/bffchallenge.html">
+     <img src="./assets/bffchallenge.png" class="newbutton">      
+       </a>
+   </div>
+   
+   <div class="cover">
+    <a href="emoji.html">
+    <img src="./assets/Get_started/emoji.png" class="newbutton">
+     </a>
+   </div>
+   
+   <div class="cover">
+   <a href="buddyz.html">
+   <img src="./assets/Get_started/truthordare.png" class="newbutton">
+   </a>
+   </div>
+    
+   <!-- <input type="text" placeholder="Enter your name"/> -->
+   
+   <span class="another-links">
+    <a href="#">About Us</a>                
+    <a href="#">Privacy Policy</a>      
+    <a href="#">Disclaimer</a>
+   </span>
+    
+    
+  </main>
+  
+  <!-- FAQ -->
+  
+      <!-- JUST THE CONTENT -->
+      
+      <section style="padding: 2rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+  <h2 style="font-size: 3rem; margin-bottom: 0.8rem; color: #00f2fe; font-weight: 2000; text-align: left; width: 90%;">
+    What is Buddyz and how does it work?
+  </h2>
+  <p style="margin-bottom: 1rem; line-height: 1.7; padding: 8px; font-size: 1.2rem;">
+    The Buddyz is a fun and interactive way to test just how well your friends know you.
+    You can create personalized questions about your habits, preferences, and memories, and share
+    the quiz link with your circle. Friends attempt to guess correctly, and their scores show who’s
+    truly paying attention!
+  </p>
+  <p style="margin-bottom: 1rem; line-height: 1.7; padding: 8px; font-size: 1.2rem;">
+    Whether it’s nostalgic questions about your favorite childhood show or quirky facts like your secret
+    midnight snack, the questions are tailored by you. Once people take the quiz, their scores are
+    ranked so you can see who knows you best. It’s a fun way to strengthen friendships and stir up
+    some good-natured competition.
+  </p>
+  <p style="line-height: 1.7; padding: 8px; font-size: 1.2rem;">
+    No apps, no downloads needed. Just create, share, and watch the results roll in. Simple, safe,
+    and guaranteed to spark some laughs.
+  </p>
+</section>
+
+<!-- The only thing that made the footer go to the bottom of the page Ends here  -->
+
+<footer>
+  <div class="footer-links">
+    <a href="#">About Us</a>               
+    <a href="#">Privacy Policy</a>
+    <a href="#">Disclaimer</a>
+  </div>
+  <div class="social-links">
+    <a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="                                                             
+    <a href="#" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+  </div>
+  <p class="copyright">&copy; 2025 Buddyz. All Rights Reserved</p>
+</footer>
+
+  
+  <script src="script.js"></script>
+</body>
+</html>
