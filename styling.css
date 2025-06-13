@@ -1,0 +1,153 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.quiz-box {
+  padding: 30px 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  
+  width: 100%;
+  text-align: center;
+}
+
+h2 {
+  color: #⁴;
+  margin-bottom: 20px;
+}
+
+
+#quiz-heading {
+  margin-bottom: 20px;
+}
+
+.quiz-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.quiz-option {
+  background: #222;
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+
+.quiz-option img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.option-label {
+  background: #6c00ff;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.quiz-option:hover {
+  transform: scale(1.05);
+}
+
+.quiz-option.selected {
+  outline: 3px solid #6c00ff;
+}
+
+footer {
+  flex-shrink: 0;
+  text-align: center;
+  padding: 15px 10px;
+  background-color: #222;
+  color: #fff;
+  font-size: 14px;
+}
+
+.quiz-option.correct {
+  outline: 3px solid green;
+}
+.quiz-option.wrong {
+  outline: 3px solid red;
+}
+
+input {
+    width: 400px;
+    margin-bottom: -20px;
+    padding: 17px;
+}
+
+#a {
+    color: #ccc;
+    text-decoration: none;
+    margin-left: 15px;
+    margin-bottom: -634px;
+    font-size: 22px
+}
+
+#a span {
+        font-weight: bold;
+        font-size: 30px;
+        
+}
+
+#user-name::placeholder {
+    color: #ccc;
+    font-size: 14px;
+    
+  }
+  
+  
+  footer {
+  background: white;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.footer-links {
+  margin-bottom: 1rem;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+.social-links {
+  margin-bottom: 1rem;
+}
+
+.social-links a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.copyright {
+  color: #fff;
+  font-size: 0.8rem;
+  margin-bottom: 0;
+} 
