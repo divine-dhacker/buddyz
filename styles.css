@@ -570,3 +570,14 @@ button.loading {
   background: #ccc;
   cursor: not-allowed;
 }
+
+.delete-quiz-btn {
+  background: #ff2b74;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  float: right;
+  font-size: 0.9rem;
+}

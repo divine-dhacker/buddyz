@@ -24,6 +24,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const resultList = document.createElement('ul');
 
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.className = 'delete-quiz-btn';
+
+    deleteButton.addEventListener('click', () => {
+      // Remove from view
+      pastResultsContainer.removeChild(quizResultContainer);
+
+      // Remove from local storage
+      const savedQuizzes = getSavedQuizzes();
+      delete savedQuizzes[quizID];
+      localStorage.setItem('savedQuizzes', JSON.stringify(savedQuizzes));
+    });
+
+    quizResultContainer.appendChild(deleteButton);
     quizResultContainer.appendChild(quizLink);
     quizResultContainer.appendChild(resultList);
     pastResultsContainer.appendChild(quizResultContainer);
