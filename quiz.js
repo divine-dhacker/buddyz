@@ -777,15 +777,13 @@ document.addEventListener('DOMContentLoaded', () => {
           currentQuestionIndex = 0;
           userAnswers = [];
 
-          quizQuestions = quizData.answers.map(q => ({
-            question: q.question,
-            options: [
-              { text: q.answer },
-              { text: "Random A" },
-              { text: "Random B" },
-              { text: "Random C" }
-            ].sort(() => Math.random() - 0.5)
-          }));
+          quizQuestions = quizData.answers.map(q => {
+            const originalQuestion = allQuestions.find(aq => aq.question === q.question);
+            return {
+              question: q.question,
+              options: [...originalQuestion.options].sort(() => Math.random() - 0.5)
+            };
+          });
 
           window.correctAnswers = quizData.answers.map(q => q.answer);
           window.friendName = friendName;
