@@ -654,6 +654,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Submit quiz
   submitBtn.addEventListener('click', () => {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Submitting... <div class="loader"></div>';
+    submitBtn.classList.add('loading');
+
     // Friend's submission
     if (window.friendQuizID) {
       let score = 0;
