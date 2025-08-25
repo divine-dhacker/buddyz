@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const savedQuizzes = getSavedQuizzes();
-  const quizIDs = Object.keys(savedQuizzes);
+  const quizIDs = Object.keys(savedQuizzes).reverse();
 
   if (quizIDs.length > 0) {
     pastResultsContainer.innerHTML = '<h2>Past Quiz Results</h2>';
