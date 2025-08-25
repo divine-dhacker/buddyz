@@ -245,11 +245,32 @@
   <p class="copyright">&copy; 2025 Buddyz. All Rights Reserved</p>
 </footer>
 
+<div id="past-results-container"></div>
+
+<!-- Firebase v8 SDK - MUST come first -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script> <!-- Optional, if you're using Firestore -->
+
+
+<!-- Your Firebase config - should come AFTER the SDKs -->
+<script>
+  const firebaseConfig = {
+  apiKey: "AIzaSyAVR8OxIwbMkasKfjTVQOpi69Ikw6LraSo",
+  authDomain: "buddy-ea6cd.firebaseapp.com",
+  projectId: "buddy-ea6cd",
+  storageBucket: "buddy-ea6cd.appspot.com",
+  messagingSenderId: "947901635950",
+  appId: "1:947901635950:web:dd11c3a278eb18768e357f",
+  databaseURL: "https://buddy-ea6cd-default-rtdb.europe-west1.firebasedatabase.app"  // Updated URL
+};
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+</script>
   
   <script src="script.js"></script>
-  
-  
-  
+  <script src="home.js"></script>
   
   <!-- for the shapefull and colorfull designs -->
   <script>
