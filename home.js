@@ -28,6 +28,24 @@ document.addEventListener('DOMContentLoaded', () => {
     quizResultContainer.appendChild(resultList);
     pastResultsContainer.appendChild(quizResultContainer);
 
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.className = 'delete-btn';
+    quizResultContainer.appendChild(deleteButton);
+
+    deleteButton.addEventListener('click', () => {
+      // Remove from Firebase
+      database.ref(`quizzes/${quizID}`).remove();
+
+      // Remove from local storage
+      const savedQuizzes = getSavedQuizzes();
+      delete savedQuizzes[quizID];
+      localStorage.setItem('savedQuizzes', JSON.stringify(savedQuizzes));
+
+      // Remove from UI
+      quizResultContainer.remove();
+    });
+
     database.ref(`quizzes/${quizID}`).once('value').then(snapshot => {
       const quizData = snapshot.val();
       if (quizData) {
