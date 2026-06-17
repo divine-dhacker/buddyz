@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <!-- ════════════ GOOGLE ANALYTICS (GA4) ════════════
+       Replace G-XXXXXXXXXX with your real Measurement ID
+       from analytics.google.com (Admin > Data Streams > Web).
+       The same ID must be pasted into ALL pages. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Feedback — Buddyz</title>
+  <meta name="description" content="Share your feedback on Buddyz — help shape the free friendship quiz platform.">
+  <link rel="canonical" href="https://buddyz.xyz/feedback.html">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤝</text></svg>">
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <style>
+    .prose-page { max-width: 680px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
+    .prose-page h1 {
+      font-family: var(--font-display); font-size: 1.9rem; font-weight: 900;
+      color: var(--text-primary); margin-bottom: 0.5rem; line-height: 1.15;
+    }
+    .prose-page .page-eyebrow {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--pink); margin-bottom: 0.75rem;
+    }
+    .prose-page .page-date {
+      font-size: 0.82rem; color: var(--text-light); margin-bottom: 2rem;
+    }
+    .prose-page h2 {
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 800;
+      color: var(--text-primary); margin: 2rem 0 0.5rem;
+      border-left: 3px solid var(--pink); padding-left: 0.75rem;
+    }
+    .prose-page p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.75rem; line-height: 1.75; }
+    .prose-page ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+    .prose-page ul li {
+      font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0.5rem;
+      list-style-type: disc; line-height: 1.65;
+    }
+    .prose-page a { color: var(--pink); font-weight: 600; text-decoration: none; }
+    .prose-page a:hover { text-decoration: underline; }
+    .prose-page .closing-note {
+      margin-top: 2.5rem; padding: 1.25rem; background: var(--pink-soft);
+      border-radius: var(--radius-md); font-size: 0.88rem;
+      color: var(--text-primary); font-style: italic; text-align: center;
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" aria-label="Back to home"><span>&larr;</span> Home</a>
+</nav>
+<main style="padding-top:0.5rem; align-items:flex-start;">
+  <div class="prose-page">
+
+    <p class="page-eyebrow">✦ Talk to Us</p>
+    <h1>Share Your Feedback</h1>
+    <p class="page-date">We genuinely read every message.</p>
+    <p>Got a suggestion, spotted a bug, or just want to say something? Use the form below. Your feedback directly shapes what we build next.</p>
+
+    <div id="feedback-form-wrap" style="margin-top:1.5rem; display:flex; flex-direction:column; gap:12px; width:100%;">
+      <div>
+        <label for="fb-name" style="display:block; font-size:0.82rem; font-weight:600; color:var(--text-muted); margin-bottom:5px;">Your Name</label>
+        <input type="text" id="fb-name" placeholder="e.g. Alex" maxlength="60" style="max-width:100%;"/>
+      </div>
+      <div>
+        <label for="fb-type" style="display:block; font-size:0.82rem; font-weight:600; color:var(--text-muted); margin-bottom:5px;">Feedback Type</label>
+        <select id="fb-type" style="width:100%; padding:0.9rem 1.25rem; border:1.5px solid var(--border-mid); border-radius:var(--radius-pill); font-family:var(--font-body); font-size:1rem; color:var(--text-primary); background:var(--surface); outline:none; appearance:none; cursor:pointer;">
+          <option value="suggestion">💡 Suggestion</option>
+          <option value="bug">🐛 Bug Report</option>
+          <option value="compliment">❤️ Compliment</option>
+          <option value="other">💬 Other</option>
+        </select>
+      </div>
+      <div>
+        <label for="fb-message" style="display:block; font-size:0.82rem; font-weight:600; color:var(--text-muted); margin-bottom:5px;">Message</label>
+        <textarea id="fb-message" placeholder="Tell us what's on your mind…" maxlength="1000" rows="5"
+          style="width:100%; padding:0.9rem 1.25rem; border:1.5px solid var(--border-mid); border-radius:var(--radius-md); font-family:var(--font-body); font-size:0.95rem; color:var(--text-primary); background:var(--surface); outline:none; resize:vertical; transition:border-color 0.2s, box-shadow 0.2s;"
+          onfocus="this.style.borderColor='var(--pink)'; this.style.boxShadow='0 0 0 4px rgba(255,45,120,0.10)'"
+          onblur="this.style.borderColor=''; this.style.boxShadow=''"
+        ></textarea>
+      </div>
+      <button id="fb-submit" class="btn btn-primary" style="max-width:100%;" onclick="submitFeedback()">
+        Send Feedback &nbsp;→
+      </button>
+      <div id="fb-success" style="display:none; background:var(--green-soft); border:1.5px solid rgba(16,185,129,0.3); border-radius:var(--radius-md); padding:1rem; text-align:center; font-size:0.9rem; color:var(--green); font-weight:600;">
+        ✅ Thank you! Your feedback has been received.
+      </div>
+    </div>
+    <script>
+    function submitFeedback() {
+      const name    = document.getElementById('fb-name').value.trim();
+      const type    = document.getElementById('fb-type').value;
+      const message = document.getElementById('fb-message').value.trim();
+      const btn     = document.getElementById('fb-submit');
+      const success = document.getElementById('fb-success');
+
+      if (!message) {
+        const ta = document.getElementById('fb-message');
+        ta.style.borderColor = '#EF4444';
+        ta.focus();
+        setTimeout(() => ta.style.borderColor = '', 1500);
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      // Save to Firebase under /feedback
+      const ref = database.ref('feedback').push();
+      ref.set({ name: name || 'Anonymous', type, message, timestamp: Date.now() })
+        .then(() => {
+          document.getElementById('feedback-form-wrap').style.opacity = '0';
+          setTimeout(() => {
+            document.getElementById('feedback-form-wrap').style.display = 'none';
+            success.style.display = 'block';
+            success.style.animation = 'fadeUp 0.4s ease both';
+          }, 300);
+        })
+        .catch(() => {
+          btn.disabled = false;
+          btn.textContent = 'Send Feedback →';
+          alert('Could not send. Please try again or email support@buddyz.com');
+        });
+    }
+    </script>
+  </div>
+</main>
+<footer>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="disclaimer.html">Disclaimer</a>
+    <a href="feedback.html">Feedback</a>
+    <a href="terms.html">Terms</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="social-links">
+    <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="#" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+  </div>
+  <p class="copyright">&copy; 2025 Buddyz. All Rights Reserved.</p>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script>
+  if (!firebase.apps.length) {
+    firebase.initializeApp({
+      apiKey:            "AIzaSyAVR8OxIwbMkasKfjTVQOpi69Ikw6LraSo",
+      authDomain:        "buddy-ea6cd.firebaseapp.com",
+      projectId:         "buddy-ea6cd",
+      storageBucket:     "buddy-ea6cd.appspot.com",
+      messagingSenderId: "947901635950",
+      appId:             "1:947901635950:web:dd11c3a278eb18768e357f",
+      databaseURL:       "https://buddy-ea6cd-default-rtdb.europe-west1.firebasedatabase.app"
+    });
+  }
+  const database = firebase.database();
+</script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <!-- ════════════ GOOGLE ANALYTICS (GA4) ════════════
+       Replace G-XXXXXXXXXX with your real Measurement ID
+       from analytics.google.com (Admin > Data Streams > Web).
+       The same ID must be pasted into ALL pages. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>About — Divine Nosakhare, Founder &amp; CEO of Buddyz</title>
+  <meta name="description" content="Meet Divine Nosakhare, the 17-year-old self-taught developer from Nigeria who founded and built Buddyz — a free friendship quiz platform — using JavaScript and Firebase.">
+
+  <!-- Canonical & Robots -->
+  <link rel="canonical" href="https://buddyz.xyz/about.html">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="About — Divine Nosakhare, Founder & CEO of Buddyz">
+  <meta property="og:description" content="The story behind Buddyz: a free friendship quiz platform built by 17-year-old self-taught developer Divine Nosakhare.">
+  <meta property="og:image"       content="https://buddyz.xyz/previews.png">
+  <meta property="og:url"         content="https://buddyz.xyz/about.html">
+  <meta property="og:type"        content="profile">
+  <meta property="og:site_name"   content="Buddyz">
+  <meta property="og:locale"      content="en_US">
+  <meta property="profile:first_name" content="Divine">
+  <meta property="profile:last_name"  content="Nosakhare">
+
+  <!-- Twitter -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="About — Divine Nosakhare, Founder & CEO of Buddyz">
+  <meta name="twitter:description" content="Meet the founder behind Buddyz, a free friendship quiz platform built by a 17-year-old self-taught developer from Nigeria.">
+  <meta name="twitter:image"       content="https://buddyz.xyz/previews.png">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤝</text></svg>">
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+  <!-- ════════════ STRUCTURED DATA (JSON-LD) ════════════
+       Identifies Divine Nosakhare as the Founder & CEO of
+       Buddyz, linking the person to the organization. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Divine Nosakhare",
+      "jobTitle": "Founder & CEO",
+      "description": "17-year-old self-taught developer from Nigeria and Founder & CEO of Buddyz, a free friendship quiz platform.",
+      "url": "https://buddyz.xyz/about.html",
+      "image": "https://buddyz.xyz/icon-512.png",
+      "nationality": "Nigerian",
+      "knowsAbout": [
+        "Web Development",
+        "Full-Stack Engineering",
+        "Artificial Intelligence",
+        "Computer Vision",
+        "Product Design"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Buddyz",
+        "url": "https://buddyz.xyz/"
+      },
+      "founder": {
+        "@type": "Organization",
+        "name": "Buddyz",
+        "url": "https://buddyz.xyz/"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/divine-nosakhare-9a4184413",
+        "https://x.com/DivineN133"
+      ]
+    }
+  }
+  </script>
+
+  <style>
+    .about-wrap {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3.5rem;
+      width: 100%;
+    }
+
+    /* ── Hero Banner ── */
+    .about-hero {
+      background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 100%);
+      border-radius: var(--radius-xl);
+      padding: 2rem 1.5rem 1.75rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-pink);
+    }
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 160px; height: 160px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+    .about-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; left: -30px;
+      width: 120px; height: 120px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+    .about-avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      margin: 0 auto 0.75rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+      border: 3px solid rgba(255,255,255,0.35);
+      position: relative; z-index: 1;
+    }
+    .about-hero-name {
+      font-family: var(--font-display);
+      font-size: 1.6rem; font-weight: 900;
+      color: #fff; margin-bottom: 0.2rem;
+      position: relative; z-index: 1;
+    }
+    .about-hero-tag {
+      font-size: 0.85rem; color: rgba(255,255,255,0.82);
+      font-weight: 500; position: relative; z-index: 1;
+    }
+    .about-hero-motto {
+      margin-top: 1.25rem;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.95);
+      font-style: italic;
+      position: relative; z-index: 1;
+      line-height: 1.6;
+    }
+
+    /* ── Social Row ── */
+    .social-row {
+      display: flex; gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .social-pill {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1.5px solid var(--border-mid);
+      border-radius: var(--radius-pill);
+      padding: 0.65rem 1rem;
+      font-size: 0.85rem; font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: border-color var(--dur-fast), box-shadow var(--dur-fast), transform var(--dur-fast);
+      box-shadow: var(--shadow-xs);
+    }
+    .social-pill:hover {
+      border-color: var(--pink);
+      box-shadow: 0 4px 14px rgba(255,45,120,0.15);
+      transform: translateY(-1px);
+      color: var(--pink);
+    }
+    .social-pill:active { transform: scale(0.96); }
+
+    /* ── Section Block ── */
+    .about-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.25rem;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-xs);
+      animation: fadeUp 0.4s var(--ease-out) both;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 0.72rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--pink); margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .about-para {
+      font-size: 0.93rem; color: var(--text-muted);
+      line-height: 1.78; margin-bottom: 0.6rem;
+    }
+    .about-para:last-child { margin-bottom: 0; }
+
+    /* ── Interest Tags ── */
+    .tag-cloud {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 0.25rem;
+    }
+    .tag {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      padding: 0.3rem 0.85rem;
+      font-size: 0.78rem; font-weight: 600;
+      color: var(--text-muted);
+      display: flex; align-items: center; gap: 5px;
+      transition: background var(--dur-fast), border-color var(--dur-fast), color var(--dur-fast);
+      cursor: default;
+    }
+    .tag:hover { background: var(--pink-soft); border-color: var(--pink); color: var(--pink); }
+
+    /* ── Focus List ── */
+    .focus-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+    .focus-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;
+    }
+    .focus-dot {
+      width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; color: #fff; font-weight: 800; margin-top: 1px;
+    }
+
+    /* ── About Buddyz card ── */
+    .buddyz-card {
+      background: linear-gradient(135deg, rgba(255,45,120,0.06) 0%, rgba(168,85,247,0.06) 100%);
+      border: 1.5px solid rgba(255,45,120,0.18);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      margin-bottom: 12px;
+    }
+    .buddyz-card-title {
+      font-family: var(--font-display);
+      font-size: 1rem; font-weight: 900;
+      color: var(--text-primary); margin-bottom: 0.5rem;
+    }
+    .buddyz-card p {
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 0.5rem;
+    }
+    .buddyz-card p:last-child { margin-bottom: 0; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" aria-label="Back to home"><span>&larr;</span> Home</a>
+</nav>
+
+<main style="padding-top:0.5rem; align-items:flex-start;">
+  <div class="about-wrap">
+
+    <!-- ── Hero ── -->
+    <div class="about-hero">
+      <div class="about-avatar">👨‍💻</div>
+      <div class="about-hero-name">Divine Nosakhare</div>
+      <div class="about-hero-tag">Founder &amp; CEO, Buddyz · 17 · Nigeria 🇳🇬</div>
+      <div class="about-hero-motto">
+        "Start small, learn continuously, build consistently, and think globally."
+      </div>
+    </div>
+
+    <!-- ── Social Links ── -->
+    <div class="social-row">
+      <a href="https://www.linkedin.com/in/divine-nosakhare-9a4184413" target="_blank" rel="noopener noreferrer"
+         class="social-pill" aria-label="LinkedIn profile">
+        <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+      </a>
+      <a href="https://x.com/DivineN133" target="_blank" rel="noopener noreferrer"
+         class="social-pill" aria-label="X / Twitter profile">
+        <i class="fa-brands fa-x-twitter"></i> Twitter
+      </a>
+      <a href="mailto:nosakharedivine0@gmail.com"
+         class="social-pill" aria-label="Send an email">
+        <i class="fa-regular fa-envelope"></i> Email
+      </a>
+    </div>
+
+    <!-- ── My Story ── -->
+    <div class="about-section">
+      <div class="section-title"><i class="fa-solid fa-user"></i> My Story</div>
+      <p class="about-para">
+        My name is Divine, a 17-year-old self-taught developer from Nigeria with a strong passion for
+        technology, entrepreneurship, and problem-solving. I started my journey with HTML and CSS before
+        moving into JavaScript and full-stack development. Today, I'm the <strong>Founder &amp; CEO of Buddyz</strong>,
+        a free friendship quiz platform I designed, built, and ship entirely on my own.
+      </p>
+      <p class="about-para">
+        My goal is not just to learn how to code — but to become a technology founder capable of creating
+        products that solve meaningful problems in Africa and around the world. One of my biggest ambitions
+        is to build a large-scale social platform called <strong>Update</strong>, designed to connect people
+        in entirely new ways.
+      </p>
+      <p class="about-para">
+        My learning philosophy is simple: <strong>build more, consume less.</strong> Rather than spending all
+        my time on tutorials, I create real projects that teach me through experience. Consistency, curiosity,
+        and persistence matter more than expensive resources.
+      </p>
+    </div>
+
+    <!-- ── About Buddyz ── -->
+    <div class="buddyz-card">
+      <div class="buddyz-card-title">🤝 What is Buddyz?</div>
+      <p>
+        Buddyz is one of those real-world projects. I built it to make friendship more fun and shareable —
+        create a quiz about yourself, send one link, and find out who truly knows you best.
+      </p>
+      <p>
+        No accounts. No downloads. No fees. Just 15 questions, one unique link, and a leaderboard that
+        reveals everything. Built entirely by a 17-year-old with JavaScript and Firebase.
+      </p>
+    </div>
+
+    <!-- ── Interests ── -->
+    <div class="about-section">
+      <div class="section-title"><i class="fa-solid fa-fire"></i> Interests</div>
+      <div class="tag-cloud">
+        <span class="tag">⚡ Web Development</span>
+        <span class="tag">🛠 Full-Stack Engineering</span>
+        <span class="tag">🤖 Artificial Intelligence</span>
+        <span class="tag">👁 Computer Vision</span>
+        <span class="tag">📱 Social Media Platforms</span>
+        <span class="tag">🚀 Startup Building</span>
+        <span class="tag">🎨 Product Design</span>
+        <span class="tag">📚 EdTech</span>
+        <span class="tag">⚙️ Automation Systems</span>
+        <span class="tag">🌍 Open Source</span>
+        <span class="tag">💼 Entrepreneurship</span>
+      </div>
+    </div>
+
+    <!-- ── Current Focus ── -->
+    <div class="about-section">
+      <div class="section-title"><i class="fa-solid fa-bullseye"></i> Current Focus</div>
+      <ul class="focus-list">
+        <li class="focus-item"><div class="focus-dot">1</div>Strengthening JavaScript fundamentals</li>
+        <li class="focus-item"><div class="focus-dot">2</div>Learning modern frontend and backend development</li>
+        <li class="focus-item"><div class="focus-dot">3</div>Building real-world software projects</li>
+        <li class="focus-item"><div class="focus-dot">4</div>Exploring AI and machine learning technologies</li>
+        <li class="focus-item"><div class="focus-dot">5</div>Developing startup ideas and digital products</li>
+        <li class="focus-item"><div class="focus-dot">6</div>Improving problem-solving and software architecture</li>
+      </ul>
+    </div>
+
+    <!-- ── Vision ── -->
+    <div class="about-section">
+      <div class="section-title"><i class="fa-solid fa-globe"></i> Long-term Vision</div>
+      <p class="about-para">
+        To become a successful technology entrepreneur, lead innovative software projects, create
+        opportunities for others, and contribute to the growth of Africa's technology ecosystem.
+        Every project I build is a step toward that goal.
+      </p>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="disclaimer.html">Disclaimer</a>
+    <a href="feedback.html">Feedback</a>
+    <a href="terms.html">Terms</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="social-links">
+    <a href="https://www.linkedin.com/in/divine-nosakhare-9a4184413" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+      <i class="fa-brands fa-linkedin-in"></i>
+    </a>
+    <a href="https://x.com/DivineN133" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter">
+      <i class="fa-brands fa-x-twitter"></i>
+    </a>
+  </div>
+  <p class="copyright">&copy; 2025 Divine Nosakhare. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

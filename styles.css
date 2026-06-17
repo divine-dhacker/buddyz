@@ -1,0 +1,1925 @@
+/*
+============================================================
+BUDDYZ QUIZ — DESIGN SYSTEM v2.0
+White Theme · Premium Mobile-First · AdSense Ready
+============================================================
+*/
+
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* ── Design Tokens ── */
+:root {
+  /* Brand Palette */
+  --pink:        #FF2D78;
+  --pink-light:  #FF6FA3;
+  --pink-soft:   rgba(255, 45, 120, 0.10);
+  --purple:      #A855F7;
+  --purple-soft: rgba(168, 85, 247, 0.10);
+  --cyan:        #06B6D4;
+  --cyan-soft:   rgba(6, 182, 212, 0.10);
+  --amber:       #F59E0B;
+  --amber-soft:  rgba(245, 158, 11, 0.10);
+  --green:       #10B981;
+  --green-soft:  rgba(16, 185, 129, 0.10);
+
+  /* Surface & Text */
+  --bg:           #F8F9FC;
+  --surface:      #FFFFFF;
+  --surface-2:    #F2F4F8;
+  --border:       rgba(0, 0, 0, 0.07);
+  --border-mid:   rgba(0, 0, 0, 0.12);
+  --text-primary: #0F172A;
+  --text-muted:   #64748B;
+  --text-light:   #94A3B8;
+
+  /* Elevation (light-theme shadows) */
+  --shadow-xs: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-sm: 0 4px 12px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.04);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.09), 0 4px 8px rgba(0,0,0,0.05);
+  --shadow-lg: 0 20px 48px rgba(0,0,0,0.11), 0 8px 16px rgba(0,0,0,0.06);
+  --shadow-pink: 0 8px 24px rgba(255, 45, 120, 0.25);
+  --shadow-purple: 0 8px 24px rgba(168, 85, 247, 0.25);
+
+  /* Shape */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-pill: 999px;
+
+  /* Motion */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast:    140ms;
+  --dur-mid:     240ms;
+  --dur-slow:    400ms;
+
+  /* Type */
+  --font-display: 'Baloo 2', 'Nunito', sans-serif;
+  --font-body:    'Plus Jakarta Sans', 'Inter', sans-serif;
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+button { font-family: var(--font-body); }
+ul, ol { list-style: none; }
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes popIn {
+  0%   { transform: scale(0.85); opacity: 0; }
+  70%  { transform: scale(1.04); }
+  100% { transform: scale(1);    opacity: 1; }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 45, 120, 0.35); }
+  70%  { box-shadow: 0 0 0 12px rgba(255, 45, 120, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 45, 120, 0); }
+}
+@keyframes confetti-fall {
+  0%   { transform: translateY(-10px) rotate(0deg);   opacity: 1; }
+  100% { transform: translateY(60px)  rotate(360deg); opacity: 0; }
+}
+@keyframes bounce-logo {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+@keyframes slide-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+@keyframes gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ── AdSense Banner Slots ─────────────────────────────── */
+.ad-slot {
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto 20px;
+  min-height: 60px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px dashed var(--border-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  /* Intentionally NOT touching user-interactive elements */
+  pointer-events: none; /* AdSense script re-enables interaction */
+}
+
+/* ── Header ── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-xs);
+}
+
+/* Buddyz wordmark */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow-pink);
+  flex-shrink: 0;
+}
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: bounce-logo 2.5s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* ── Pill Badge ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.badge-pink    { background: var(--pink-soft);   color: var(--pink); }
+.badge-purple  { background: var(--purple-soft); color: var(--purple); }
+.badge-cyan    { background: var(--cyan-soft);   color: var(--cyan); }
+.badge-amber   { background: var(--amber-soft);  color: var(--amber); }
+.badge-green   { background: var(--green-soft);  color: var(--green); }
+
+/* ── Main Layout ── */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1rem 2rem;
+  gap: 16px;
+}
+
+/* ── Card ── */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  width: 95%;
+  max-width: 450px;
+  padding: 1.5rem 1.25rem;
+  animation: fadeUp var(--dur-slow) var(--ease-out) both;
+}
+.card + .card { margin-top: 0; }
+
+/* ── Hero Card (Homepage) ── */
+.hero-card {
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  width: 95%;
+  max-width: 450px;
+  padding: 2rem 1.5rem 1.75rem;
+  margin-top: 6px;
+  text-align: center;
+  animation: fadeUp 0.5s var(--ease-out) both;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative gradient orb behind hero */
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255,45,120,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-card::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  left: -40px;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(168,85,247,0.10) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 1rem;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  font-weight: 900;
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+.hero-title span {
+  background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 1.75rem;
+  max-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* How It Works Steps */
+.steps-row {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 1.75rem;
+  position: relative;
+}
+.steps-row::before {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: calc(50% - 90px);
+  width: 180px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--pink) 0%, var(--purple) 100%);
+  opacity: 0.25;
+}
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90px;
+  gap: 0.4rem;
+}
+.step-dot {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 800;
+  font-family: var(--font-display);
+  position: relative;
+  z-index: 1;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+.step-dot.pink   { background: var(--pink);   color: #fff; }
+.step-dot.purple { background: var(--purple); color: #fff; }
+.step-dot.cyan   { background: var(--cyan);   color: #fff; }
+.step-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ── CTA Button ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  transition:
+    transform var(--dur-fast) var(--ease-spring),
+    box-shadow var(--dur-fast) var(--ease-out),
+    opacity var(--dur-fast);
+  text-align: center;
+  width: 100%;
+  max-width: 350px;
+  padding: 1rem 1.5rem;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0);
+  transition: background var(--dur-fast);
+  border-radius: inherit;
+}
+.btn:hover::after { background: rgba(255,255,255,0.12); }
+.btn:active {
+  transform: scale(0.96) !important;
+  box-shadow: none !important;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 100%);
+  color: #fff;
+  box-shadow: var(--shadow-pink);
+  animation: pulse-ring 2.5s ease-in-out infinite;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(255, 45, 120, 0.35);
+}
+
+.btn-outline {
+  background: var(--surface);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border-mid);
+  box-shadow: var(--shadow-xs);
+}
+.btn-outline:hover {
+  transform: translateY(-1px);
+  border-color: var(--pink);
+  color: var(--pink);
+  box-shadow: 0 4px 12px rgba(255,45,120,0.15);
+}
+
+.btn-ghost {
+  background: var(--pink-soft);
+  color: var(--pink);
+  width: auto;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.9rem;
+}
+
+/* ── Input Fields ── */
+input[type="text"] {
+  width: 100%;
+  max-width: 350px;
+  padding: 0.9rem 1.25rem;
+  background: var(--surface);
+  border: 1.5px solid var(--border-mid);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-primary);
+  outline: none;
+  transition:
+    border-color var(--dur-mid),
+    box-shadow var(--dur-mid);
+  display: block;
+}
+input[type="text"]::placeholder { color: var(--text-light); }
+input[type="text"]:focus {
+  border-color: var(--pink);
+  box-shadow: 0 0 0 4px rgba(255, 45, 120, 0.10);
+}
+
+input[type="text"][readonly] {
+  background: var(--surface-2);
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* ── Past Quizzes Dashboard ── */
+#result-board-container {
+  width: 95%;
+  max-width: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: fadeUp var(--dur-slow) var(--ease-out) both;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.dashboard-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.dashboard-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Quiz History Card */
+.quiz-history-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: box-shadow var(--dur-mid);
+}
+.quiz-history-card:hover { box-shadow: var(--shadow-md); }
+
+.quiz-history-header {
+  padding: 1rem 1.25rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+.quiz-history-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+.quiz-history-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.quiz-history-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  transition: background var(--dur-fast), color var(--dur-fast), transform var(--dur-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+.btn-icon:hover { background: var(--pink-soft); color: var(--pink); }
+.btn-icon:active { transform: scale(0.90); }
+
+.quiz-share-row {
+  padding: 0.6rem 1.25rem;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.quiz-share-row input {
+  flex: 1;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.8rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-mid);
+  background: var(--surface);
+  color: var(--text-muted);
+  max-width: none;
+}
+.quiz-share-row .btn-ghost {
+  flex-shrink: 0;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.8rem;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Leaderboard Table ── */
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.leaderboard-table th {
+  padding: 0.65rem 1rem;
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  background: var(--surface-2);
+}
+.leaderboard-table td {
+  padding: 0.7rem 1rem;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  border-top: 1px solid var(--border);
+  vertical-align: middle;
+}
+.leaderboard-table tr:last-child td { border-bottom: none; }
+
+/* Rank Cell */
+.rank-cell {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1rem;
+  width: 40px;
+}
+.rank-1 { color: #F59E0B; }
+.rank-2 { color: #94A3B8; }
+.rank-3 { color: #CD7F32; }
+
+/* Top 3 Row highlights */
+.leaderboard-table tr.rank-row-1 td { background: rgba(245,158,11,0.06); }
+.leaderboard-table tr.rank-row-2 td { background: rgba(148,163,184,0.05); }
+.leaderboard-table tr.rank-row-3 td { background: rgba(205,127,50,0.05); }
+
+/* Tier Badge */
+.tier-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  font-size: 0.7rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.tier-certified   { background: rgba(245,158,11,0.15); color: #D97706; }
+.tier-bestie      { background: rgba(255,45,120,0.12); color: var(--pink); }
+.tier-close       { background: rgba(168,85,247,0.12); color: var(--purple); }
+.tier-acquaintance{ background: rgba(100,116,139,0.12); color: var(--text-muted); }
+
+/* Score Bar */
+.score-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.score-bar {
+  flex: 1;
+  height: 5px;
+  background: var(--surface-2);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--pink), var(--purple));
+  border-radius: var(--radius-pill);
+  transition: width 0.8s var(--ease-out);
+}
+.score-text {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* Delete btn override for table */
+.delete-btn {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 6px;
+  transition: background var(--dur-fast), color var(--dur-fast), transform var(--dur-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.delete-btn:hover  { background: rgba(239,68,68,0.10); color: #EF4444; }
+.delete-btn:active { transform: scale(0.85); }
+
+/* "View answers" eye button — sits inline next to the friend's
+   name in the leaderboard, doesn't change row height or layout. */
+.view-answers-btn {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 0.78rem;
+  cursor: pointer;
+  padding: 3px 5px;
+  border-radius: 6px;
+  line-height: 1;
+  transition: background var(--dur-fast), color var(--dur-fast), transform var(--dur-fast);
+  flex-shrink: 0;
+}
+.view-answers-btn:hover  { background: var(--pink-soft); color: var(--pink); }
+.view-answers-btn:active { transform: scale(0.85); }
+
+/* Answer detail sheet — per-question breakdown for a friend's run */
+.answer-detail-sheet {
+  max-height: 82vh;
+  overflow-y: auto;
+}
+.answer-detail-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 0.5rem;
+}
+.answer-detail-row {
+  border-radius: var(--radius-md);
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+}
+.answer-detail-row.answer-correct { border-color: rgba(16,185,129,0.25); background: var(--green-soft); }
+.answer-detail-row.answer-wrong   { border-color: rgba(239,68,68,0.20); background: rgba(239,68,68,0.05); }
+.answer-detail-q {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+  line-height: 1.35;
+}
+.answer-detail-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.answer-detail-icon { flex-shrink: 0; font-size: 0.85rem; line-height: 1.4; }
+.answer-detail-text {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+.answer-detail-correct { color: #EF4444; font-weight: 600; }
+
+/* ── Quiz Container (bffchallenge) ── */
+#friend-name-container,
+#share-container {
+  width: 95%;
+  max-width: 450px;
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  padding: 1.5rem 1.25rem;
+  margin: 8px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  animation: fadeUp 0.4s var(--ease-out) both;
+}
+
+/* #name-container is no longer its own card — it's folded directly
+   into .hero-card (one unified box: pitch + stats + steps + name
+   entry, no second white box stacked underneath). */
+#name-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+/* Soft divider between the pitch content above and the name-entry
+   input below, inside the same hero card. */
+.hero-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  margin: 0.25rem 0;
+}
+
+.hero-fineprint {
+  font-size: 0.74rem;
+  color: var(--text-light);
+  line-height: 1.5;
+  margin-top: -0.15rem;
+}
+.hero-fineprint a { color: var(--pink); font-weight: 600; }
+
+/* #quiz-container is now a plain, transparent, full-width wrapper —
+   no white card, no padding box — so the colored .question-card
+   (rendered inside #question-container) stands on its own, edge to
+   edge, instead of looking nested inside another container. */
+#quiz-container {
+  width: 95%;
+  max-width: 450px;
+  margin: 8px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
+  animation: fadeUp 0.4s var(--ease-out) both;
+}
+
+.quiz-heading {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  text-align: center;
+  width: 100%;
+}
+
+/* Progress Bar */
+.quiz-progress {
+  width: 100%;
+  height: 5px;
+  background: var(--surface-2);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.quiz-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--pink), var(--purple));
+  border-radius: var(--radius-pill);
+  transition: width 0.5s var(--ease-out);
+}
+
+.quiz-counter {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: right;
+  width: 100%;
+  margin-top: -6px;
+}
+
+/* ══════════════════════════════════════════════
+   QUESTION CARD — colorful, creator-pickable
+   Each question renders inside a colored card
+   (gradient background). A small palette of 6
+   swatches lets the creator change the color for
+   that specific question. Options sit below as a
+   single vertical stack of white pill rows.
+══════════════════════════════════════════════ */
+
+/* 6 curated gradients — vibrant, on-brand, accessible
+   against white text. Each is selectable per-question. */
+.qcolor-sunset   { background: linear-gradient(135deg, #FF2D78 0%, #FF8A5C 100%); }
+.qcolor-grape    { background: linear-gradient(135deg, #7C3AED 0%, #C026D3 100%); }
+.qcolor-ocean    { background: linear-gradient(135deg, #0EA5E9 0%, #22D3EE 100%); }
+.qcolor-mint     { background: linear-gradient(135deg, #10B981 0%, #34D399 100%); }
+.qcolor-amber    { background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%); }
+.qcolor-midnight { background: linear-gradient(135deg, #312E81 0%, #6366F1 100%); }
+
+.question-card {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  padding: 1.35rem 1.15rem 1.15rem;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.35s var(--ease-out);
+  animation: fadeUp 0.4s var(--ease-out) both;
+}
+
+/* Subtle decorative texture so flat gradients still feel designed,
+   not like a plain CSS default — two soft overlapping light blobs. */
+.question-card::before,
+.question-card::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.14);
+  pointer-events: none;
+}
+.question-card::before { width: 140px; height: 140px; top: -50px; right: -40px; }
+.question-card::after  { width: 90px;  height: 90px;  bottom: -30px; left: -20px; background: rgba(255,255,255,0.10); }
+
+#question-container h3 {
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+  line-height: 1.42;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.12);
+}
+
+/* Color picker swatches — shown above the question text,
+   only on the CREATOR's own quiz-building flow. */
+/* ⓓ Speed streak badge — tiny addictive nudge, friend-flow only.
+   Pops in briefly at the top of the question card when the
+   friend has answered several questions quickly in a row. */
+.speed-streak-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255,255,255,0.22);
+  color: #FFFFFF;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 0.7rem;
+  position: relative;
+  z-index: 1;
+  animation: streakPop 0.4s var(--ease-spring) both;
+}
+@keyframes streakPop {
+  0%   { transform: scale(0.6); opacity: 0; }
+  60%  { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+.qcolor-picker {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 0.9rem;
+  position: relative;
+  z-index: 1;
+}
+.qcolor-swatch {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.55);
+  cursor: pointer;
+  padding: 0;
+  transition: transform var(--dur-fast) var(--ease-spring), border-color var(--dur-fast);
+  flex-shrink: 0;
+}
+.qcolor-swatch:active { transform: scale(0.88); }
+.qcolor-swatch.qcolor-active {
+  border-color: #FFFFFF;
+  transform: scale(1.18);
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.35);
+}
+
+/* Options — single vertical line, white rows */
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.quiz-option {
+  background: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition:
+    transform     var(--dur-fast) var(--ease-spring),
+    box-shadow    var(--dur-fast) var(--ease-out);
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+}
+.quiz-option:active {
+  transform: scale(0.98);
+}
+.quiz-option.selected {
+  transform: scale(1.01);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+}
+.quiz-option.selected .option-label { color: #FFFFFF; }
+.quiz-option.selected .keyboard-hint {
+  background: rgba(255,255,255,0.28);
+  color: #FFFFFF;
+}
+.quiz-option.selected::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  background: rgba(255,255,255,0.95);
+  color: var(--text-primary);
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Selected option takes on the question card's own color —
+   matches whichever of the 6 swatches is active for that question. */
+.qcolor-sunset   .quiz-option.selected { background: linear-gradient(135deg, #FF2D78 0%, #FF8A5C 100%); }
+.qcolor-grape    .quiz-option.selected { background: linear-gradient(135deg, #7C3AED 0%, #C026D3 100%); }
+.qcolor-ocean    .quiz-option.selected { background: linear-gradient(135deg, #0EA5E9 0%, #22D3EE 100%); }
+.qcolor-mint     .quiz-option.selected { background: linear-gradient(135deg, #10B981 0%, #34D399 100%); }
+.qcolor-amber    .quiz-option.selected { background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%); }
+.qcolor-midnight .quiz-option.selected { background: linear-gradient(135deg, #312E81 0%, #6366F1 100%); }
+
+.option-label {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.35;
+  flex: 1;
+}
+
+.keyboard-hint {
+  flex-shrink: 0;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Share Container ── */
+#share-container h2 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--text-primary);
+}
+#share-container p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ── Smart Share Sheet (Bottom Sheet Overlay) ── */
+.share-sheet-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  z-index: 1100;
+  display: flex;
+  align-items: flex-end;
+  animation: fadeIn 0.2s ease both;
+}
+.share-sheet-overlay.hidden { display: none; }
+
+.share-sheet {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--surface);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  padding: 1.25rem 1.25rem 2.5rem;
+  animation: slide-up 0.35s var(--ease-out) both;
+  box-shadow: 0 -8px 40px rgba(0,0,0,0.12);
+}
+
+.share-sheet-handle {
+  width: 40px;
+  height: 4px;
+  background: var(--border-mid);
+  border-radius: var(--radius-pill);
+  margin: 0 auto 1.25rem;
+}
+.share-sheet-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+.share-sheet-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.share-link-box {
+  background: var(--surface-2);
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  word-break: break-all;
+  margin-bottom: 1.25rem;
+  cursor: pointer;
+  transition: border-color var(--dur-fast);
+  position: relative;
+}
+.share-link-box:hover { border-color: var(--pink); }
+
+.share-actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 0.75rem;
+}
+
+.share-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: transform var(--dur-fast) var(--ease-spring), box-shadow var(--dur-fast);
+}
+.share-action-btn:active { transform: scale(0.95); }
+
+.share-btn-whatsapp {
+  background: #25D366;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(37,211,102,0.30);
+}
+.share-btn-copy {
+  background: var(--surface-2);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border-mid);
+}
+.share-btn-instagram {
+  background: linear-gradient(135deg, #E1306C, #833AB4, #FD1D1D);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(225,48,108,0.30);
+}
+.share-btn-more {
+  background: var(--cyan-soft);
+  color: var(--cyan);
+  border: 1.5px solid rgba(6,182,212,0.2);
+}
+
+/* ── Reaction Feed ── */
+.reaction-feed {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  width: 100%;
+  animation: fadeUp 0.4s var(--ease-out) both;
+}
+.reaction-feed-title {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+.reaction-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+.reaction-btn {
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 0.45rem 0.9rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition:
+    transform var(--dur-fast) var(--ease-spring),
+    background var(--dur-fast),
+    border-color var(--dur-fast);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.reaction-btn:hover {
+  background: var(--pink-soft);
+  border-color: var(--pink);
+  transform: scale(1.12);
+}
+.reaction-btn:active { transform: scale(0.92); }
+.reaction-btn .reaction-count {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+}
+
+/* Floating reaction animation */
+.floating-emoji {
+  position: fixed;
+  pointer-events: none;
+  font-size: 1.8rem;
+  z-index: 9999;
+  animation: confetti-fall 1.2s var(--ease-out) forwards;
+}
+
+/* ── Result Screen (Post-quiz) ── */
+.result-screen {
+  width: 95%;
+  max-width: 450px;
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  padding: 1.75rem 1.25rem;
+  margin: 8px auto;
+  text-align: center;
+  animation: popIn 0.5s var(--ease-spring) both;
+}
+
+.result-tier-icon {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  animation: bounce-logo 2s ease-in-out infinite;
+}
+.result-tier-label {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+.result-tier-sub {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+.result-score-circle {
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 100%);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  box-shadow: var(--shadow-pink);
+}
+.result-score-num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+}
+.result-score-denom {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.75);
+  font-weight: 600;
+}
+
+/* The name-entry input inside the hero card gets the playful
+   display font (same as the headline above it) instead of the
+   plain body font, so the whole card feels like one harmonized
+   unit rather than a form bolted onto a marketing pitch. */
+#name-container input[type="text"],
+#friend-name-container input[type="text"] {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-align: center;
+}
+#name-container input[type="text"]::placeholder,
+#friend-name-container input[type="text"]::placeholder {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+/* ── Friend Screen (name-container's h3/p/a moved into
+   .hero-card markup directly — no longer needed here) ── */
+#friend-name-container h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--text-primary);
+}
+#friend-name-container p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+#friend-name-container a {
+  color: var(--pink);
+  font-weight: 600;
+}
+
+/* ── Back Nav ── */
+nav {
+  padding: 0.75rem 1.25rem 0;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color var(--dur-fast);
+}
+nav a span {
+  font-size: 1.4rem;
+  color: var(--pink);
+  line-height: 1;
+}
+nav a:hover { color: var(--pink); }
+
+/* ── Footer ── */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 1.25rem 1.25rem 1.5rem;
+  text-align: center;
+  margin-top: auto;
+  z-index: 1;
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 1rem;
+  margin-bottom: 0.75rem;
+}
+.footer-links a {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  transition: color var(--dur-fast);
+}
+.footer-links a:hover { color: var(--pink); }
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+}
+.social-links a {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  transition: color var(--dur-fast), transform var(--dur-fast);
+}
+.social-links a:hover {
+  color: var(--pink);
+  transform: translateY(-2px);
+}
+.copyright {
+  font-size: 0.72rem;
+  color: var(--text-light);
+}
+
+/* ── Utility ── */
+.text-center  { text-align: center; }
+.w-full       { width: 100%; }
+.hidden       { display: none !important; }
+.mt-1         { margin-top: 0.5rem; }
+.mt-2         { margin-top: 1rem; }
+.divider      { height: 1px; background: var(--border); width: 100%; }
+
+/* Skeleton loader */
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-2) 25%, #e9ecef 50%, var(--surface-2) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  background: var(--text-primary);
+  color: #fff;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 600;
+  z-index: 9999;
+  box-shadow: var(--shadow-md);
+  animation: fadeUp 0.3s var(--ease-out) both;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.toast.success { background: var(--green); }
+.toast.error   { background: #EF4444; }
+
+/* ── Responsive: Tablet/Desktop ── */
+
+@media (min-width: 768px) {
+  header { padding: 1rem 2.5rem; }
+  main   { padding: 1.5rem 1.5rem 3rem; }
+
+  .hero-card,
+  .card,
+  #quiz-container,
+  #friend-name-container,
+  #share-container,
+  #name-container,
+  #result-board-container,
+  .result-screen {
+    max-width: 560px;
+  }
+
+  .hero-title { font-size: 2.6rem; }
+  .quiz-options { gap: 14px; }
+
+  .share-sheet { max-width: 480px; }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 3rem;
+  }
+  .footer-links, .social-links { margin-bottom: 0; }
+
+  .ad-slot { max-width: 560px; }
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/*
+============================================================
+BUDDYZ QUIZ — styles.css ADDITIONS v3.0
+Append these rules at the bottom of your existing styles.css
+============================================================
+*/
+
+/* ══════════════════════════════════════════════
+   ①  SCORE CARD BUTTONS on the tier result card
+══════════════════════════════════════════════ */
+.scorecard-btn {
+  width: 100%;
+  max-width: none;
+  font-size: 0.9rem;
+  gap: 8px;
+}
+.scorecard-btn i {
+  font-size: 1rem;
+}
+.scorecard-share-btn {
+  width: 100%;
+  max-width: none;
+  font-size: 0.9rem;
+}
+
+/* ══════════════════════════════════════════════
+   ②  "CREATE YOUR OWN" CONVERSION NUDGE CARD
+══════════════════════════════════════════════ */
+.create-nudge-card {
+  width: 95%;
+  max-width: 450px;
+  background: linear-gradient(135deg, #FF2D78 0%, #A855F7 100%);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-pink);
+  animation: popIn 0.5s var(--ease-spring) both;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft shimmer overlay */
+.create-nudge-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+  pointer-events: none;
+}
+
+.nudge-emoji {
+  font-size: 2.5rem;
+  margin-bottom: 0.6rem;
+  animation: bounce-logo 2s ease-in-out infinite;
+}
+
+.nudge-headline {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.35;
+  margin-bottom: 0.4rem;
+}
+
+.nudge-sub {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.1rem;
+  font-weight: 600;
+}
+
+.nudge-cta {
+  background: #FFFFFF !important;
+  color: #FF2D78 !important;
+  font-family: var(--font-display) !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18) !important;
+  max-width: none;
+  width: 100%;
+  border: none !important;
+  font-size: 0.95rem !important;
+  padding: 0.95rem 1.5rem !important;
+  transition: transform var(--dur-fast), box-shadow var(--dur-fast) !important;
+}
+.nudge-cta:active {
+  transform: scale(0.97) !important;
+}
+
+/* ══════════════════════════════════════════════
+   ④  QUIZ EXPIRY BANNER
+══════════════════════════════════════════════ */
+.expiry-banner {
+  width: 100%;
+  background: linear-gradient(90deg, #F59E0B 0%, #EF4444 100%);
+  color: #FFFFFF;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-align: center;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+  letter-spacing: 0.01em;
+  animation: fadeUp 0.4s var(--ease-out) both;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+}
+
+/* ══════════════════════════════════════════════
+   ⑤  LIVE COUNTER STAT CHIP — pulse on update
+══════════════════════════════════════════════ */
+@keyframes count-pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.14); }
+}
+.stat-chip.live-chip strong {
+  color: var(--pink);
+  transition: color 0.2s;
+}
+.stat-chip.count-updated strong {
+  animation: count-pulse 0.45s var(--ease-spring);
+}
+
+/* ══════════════════════════════════════════════
+   ⑥  PWA PUSH NOTIFICATION NUDGE BAR
+══════════════════════════════════════════════ */
+.push-nudge-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0.85rem 1.25rem;
+  padding-bottom: calc(0.85rem + env(safe-area-inset-bottom, 0px));
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(100%);
+  transition: transform 0.35s var(--ease-out);
+}
+.push-nudge-bar.push-nudge-visible {
+  transform: translateY(0);
+}
+.push-nudge-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+}
+.push-nudge-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.push-allow {
+  background: var(--pink-soft);
+  color: var(--pink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 45, 120, 0.25);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--dur-fast), transform var(--dur-fast);
+}
+.push-allow:active { transform: scale(0.95); }
+.push-dismiss {
+  background: transparent;
+  border: none;
+  color: var(--text-light);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.35rem;
+  line-height: 1;
+  border-radius: 50%;
+  transition: color var(--dur-fast), background var(--dur-fast);
+}
+.push-dismiss:hover {
+  background: var(--surface-2);
+  color: var(--text-muted);
+}
+
+/* ══════════════════════════════════════════════
+   SHARE SHEET — slide-up entrance
+══════════════════════════════════════════════ */
+.share-sheet-overlay {
+  transition: opacity 0.2s;
+}
+/* The share-sheet itself gets a slide-up when overlay gets .share-sheet-visible */
+.share-sheet-overlay.share-sheet-visible .share-sheet {
+  animation: slide-up 0.32s var(--ease-out) both;
+}
+
+/* ══════════════════════════════════════════════
+   ⑦  FAQ ACCORDION
+   Native <details>/<summary> — crawlable, accessible,
+   zero JS. Pairs with the FAQPage JSON-LD in index.html.
+══════════════════════════════════════════════ */
+.faq-section {
+  width: 95%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0.25rem 0 1.75rem;
+}
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+  overflow: hidden;
+  transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
+}
+.faq-item[open] {
+  border-color: var(--pink-light);
+}
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0.9rem 1rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.88rem;
+  line-height: 1.35;
+  color: var(--text-primary);
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::marker { content: ''; }
+.faq-item summary:active { background: var(--surface-2); }
+.faq-chevron {
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  color: var(--pink);
+  transition: transform var(--dur-mid) var(--ease-spring);
+}
+.faq-item[open] .faq-chevron {
+  transform: rotate(180deg);
+}
+.faq-item .faq-answer {
+  margin: 0;
+  padding: 0 1rem 1.1rem;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  animation: fadeIn var(--dur-mid) var(--ease-out) both;
+}
+
+/* ══════════════════════════════════════════════
+   ⑧  SHARE-AS-IMAGE SHEET
+   Preview of the generated portrait score card,
+   plus Share / Download actions.
+══════════════════════════════════════════════ */
+.image-share-sheet {
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+.score-card-preview {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0.75rem 0 1rem;
+}
+.score-card-preview img {
+  width: auto;
+  max-width: 62%;
+  max-height: 50vh;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+}
+
+.image-share-actions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+.image-share-actions .btn {
+  flex: 1;
+  max-width: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+@media (min-width: 480px) {
+  .score-card-preview img { max-width: 280px; }
+}
+
+/* ══════════════════════════════════════════════
+   BUDDYZ v3.4 ADDITIONS
+   ① Skip button (creator flow)
+   ② Edit modal (inline question/option editing)
+   ③ Hero card redesign
+══════════════════════════════════════════════ */
+
+/* ── Skip Button — creator only, lives next to Next ── */
+.btn-skip {
+  background: rgba(0,0,0,0.06);
+  color: var(--text-muted);
+  border: 1.5px solid var(--border-mid);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.65rem 1.4rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background var(--dur-fast), color var(--dur-fast), transform var(--dur-fast) var(--ease-spring), border-color var(--dur-fast);
+  width: auto;
+  white-space: nowrap;
+}
+.btn-skip:hover {
+  background: var(--surface-2);
+  border-color: var(--text-muted);
+  color: var(--text-primary);
+}
+.btn-skip:active { transform: scale(0.95); }
+
+/* Row that holds Next + Skip side by side */
+.quiz-action-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
+.quiz-action-row .btn-primary {
+  flex: 1;
+  max-width: 280px;
+}
+
+/* ── Edit icon button on the question card ── */
+.btn-edit-question {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  background: rgba(255,255,255,0.22);
+  border: 1.5px solid rgba(255,255,255,0.38);
+  border-radius: var(--radius-sm);
+  color: #FFFFFF;
+  font-size: 0.78rem;
+  padding: 5px 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background var(--dur-fast), transform var(--dur-fast) var(--ease-spring);
+  white-space: nowrap;
+}
+.btn-edit-question:active { transform: scale(0.92); }
+.btn-edit-question:hover  { background: rgba(255,255,255,0.35); }
+
+/* ── Edit Modal Overlay ── */
+.edit-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.18s ease both;
+}
+.edit-modal {
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem 1.25rem 1.75rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: var(--shadow-lg);
+  animation: popIn 0.28s var(--ease-spring) both;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.edit-modal-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  margin-bottom: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.edit-field-label {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 5px;
+  display: block;
+}
+.edit-field-group {
+  margin-bottom: 1rem;
+}
+.edit-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--surface-2);
+  border: 1.5px solid var(--border-mid);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  outline: none;
+  resize: none;
+  line-height: 1.5;
+  transition: border-color var(--dur-mid), box-shadow var(--dur-mid);
+}
+.edit-textarea:focus {
+  border-color: var(--pink);
+  box-shadow: 0 0 0 4px rgba(255, 45, 120, 0.10);
+  background: var(--surface);
+}
+.edit-option-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+.edit-option-letter {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  background: var(--pink-soft);
+  color: var(--pink);
+  border-radius: 6px;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.edit-option-input {
+  flex: 1;
+  padding: 0.6rem 0.9rem;
+  background: var(--surface-2);
+  border: 1.5px solid var(--border-mid);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color var(--dur-mid), box-shadow var(--dur-mid);
+  max-width: none;
+}
+.edit-option-input:focus {
+  border-color: var(--pink);
+  box-shadow: 0 0 0 3px rgba(255, 45, 120, 0.10);
+  background: var(--surface);
+}
+.edit-modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 1.25rem;
+}
+.edit-modal-actions .btn {
+  flex: 1;
+  max-width: none;
+  padding: 0.9rem 1rem;
+  font-size: 0.92rem;
+}

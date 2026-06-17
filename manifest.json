@@ -1,0 +1,39 @@
+{
+  "name": "Buddyz — Friendship Quiz",
+  "short_name": "Buddyz",
+  "description": "Create friendship quizzes, share with friends, see who knows you best!",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#F8F9FC",
+  "theme_color": "#FF2D78",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["entertainment", "social"],
+  "shortcuts": [
+    {
+      "name": "Create Quiz",
+      "short_name": "Create",
+      "url": "/index.html",
+      "description": "Start a new Buddyz friendship quiz"
+    }
+  ]
+}

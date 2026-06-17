@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- ════════════ GOOGLE ANALYTICS (GA4) ════════════
+       Replace G-XXXXXXXXXX with your real Measurement ID
+       from analytics.google.com (Admin > Data Streams > Web).
+       The same ID must be pasted into ALL pages. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Buddyz — Who Truly Knows You?</title>
+  <meta name="description" content="Create personalized friendship quizzes about your habits, tastes, and memories. Share the link — see who really knows you best.">
+
+  <!-- Canonical & Robots -->
+  <link rel="canonical" href="https://buddyz.xyz/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Buddyz — Who Truly Knows You?">
+  <meta property="og:description" content="Create personalized friendship quizzes. Share the link, let friends guess — see who knows you best!">
+  <meta property="og:image"       content="https://buddyz.xyz/previews.png">
+  <meta property="og:image:width"  content="820">
+  <meta property="og:image:height" content="612">
+  <meta property="og:url"         content="https://buddyz.xyz/">
+  <meta property="og:type"        content="website">
+  <meta property="og:site_name"   content="Buddyz">
+  <meta property="og:locale"      content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Buddyz — Who Truly Knows You?">
+  <meta name="twitter:description" content="Create a personalized friendship quiz, share one link, and see who really knows you best.">
+  <meta name="twitter:image"       content="https://buddyz.xyz/previews.png">
+
+  <!-- ════════════ STRUCTURED DATA (JSON-LD) ════════════
+       Helps Google understand what Buddyz is, who makes it,
+       and how it's used — powers rich results / knowledge panels. -->
+
+  <!-- Organization + Founder -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Buddyz",
+    "alternateName": "Buddyz Quiz",
+    "url": "https://buddyz.xyz/",
+    "logo": "https://buddyz.xyz/icon-512.png",
+    "description": "Buddyz is a free friendship quiz platform where you create a personalized quiz about yourself, share one link with friends, and find out who truly knows you best.",
+    "email": "support@buddyz.com",
+    "foundingDate": "2025",
+    "founder": {
+      "@type": "Person",
+      "name": "Divine Nosakhare",
+      "jobTitle": "Founder & CEO",
+      "url": "https://buddyz.xyz/about.html",
+      "sameAs": [
+        "https://www.linkedin.com/in/divine-nosakhare-9a4184413",
+        "https://x.com/DivineN133"
+      ]
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/divine-nosakhare-9a4184413",
+      "https://x.com/DivineN133"
+    ]
+  }
+  </script>
+
+  <!-- WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Buddyz",
+    "alternateName": "Buddyz — Friendship Quiz",
+    "url": "https://buddyz.xyz/",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "Any (installable as a Progressive Web App)",
+    "description": "Create a personalized 15-question friendship quiz about your habits, tastes, and memories. Share one link on WhatsApp or Instagram, and see who knows you best on a live leaderboard.",
+    "browserRequirements": "Requires a modern web browser with JavaScript enabled",
+    "isAccessibleForFree": true,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Person",
+      "name": "Divine Nosakhare",
+      "jobTitle": "Founder & CEO"
+    },
+    "featureList": [
+      "Create a personalized friendship quiz in under a minute",
+      "No sign-up or account required",
+      "Instant shareable link for WhatsApp, Instagram and more",
+      "Live, real-time leaderboard of friends' scores",
+      "Friendship tier results (e.g. Certified Bestie, True Friend)",
+      "Quiz links automatically expire after 7 days for privacy"
+    ]
+  }
+  </script>
+
+  <!-- FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Buddyz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Buddyz is a free friendship quiz platform. You answer 15 fun questions about yourself, get a unique link, and send it to friends. Each friend guesses your answers, and a live leaderboard shows who knows you best."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I create a Buddyz quiz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tap 'Create My Quiz', enter your name, and answer 15 quick questions about your habits, tastes and memories. Buddyz instantly generates a unique link you can share with friends — no sign-up or download required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Buddyz free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Buddyz is completely free, with no hidden fees, subscriptions, or in-app purchases. Anyone with the link can take a quiz at no cost."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do my friends need to download an app or sign up?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Buddyz runs entirely in the browser. Friends just open your link, type their name, answer the questions, and instantly see their score and tier on the leaderboard."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does a Buddyz quiz link stay active?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Each quiz link stays active for 7 days from creation. After that, the link expires automatically and friends will see an expiry screen instead of the quiz."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my data private on Buddyz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Buddyz doesn't require accounts, passwords, or personal data beyond the name you choose to enter. Quiz answers and leaderboard scores are only accessible to people who have your unique quiz link."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who created Buddyz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Buddyz was created by Divine Nosakhare, the Founder and CEO of Buddyz — a self-taught developer from Nigeria who builds the entire platform using JavaScript and Firebase."
+        }
+      }
+    ]
+  }
+  </script>
+
+
+  <!-- PWA manifest -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FF2D78">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤝</text></svg>">
+
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* ── Homepage-only styles ── */
+
+    /* Stat Chips */
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .stat-chip {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      padding: 0.35rem 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .stat-chip strong {
+      color: var(--text-primary);
+      font-family: var(--font-display);
+      font-weight: 800;
+    }
+
+    /* ⑤ Live counter chip pulse animation when it updates */
+    .stat-chip.live-chip strong {
+      color: var(--pink);
+    }
+    @keyframes count-pulse {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.12); }
+    }
+    .stat-chip.count-updated strong {
+      animation: count-pulse 0.4s var(--ease-spring);
+    }
+
+    /* Feature row beneath hero */
+    .feature-row {
+      display: flex;
+      gap: 8px;
+      width: 95%;
+      max-width: 450px;
+    }
+    .feature-chip {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 0.6rem;
+      text-align: center;
+      box-shadow: var(--shadow-xs);
+      animation: fadeUp 0.55s var(--ease-out) both;
+    }
+    .feature-chip:nth-child(2) { animation-delay: 0.06s; }
+    .feature-chip:nth-child(3) { animation-delay: 0.12s; }
+    .feature-chip .fc-icon  { font-size: 1.4rem; margin-bottom: 4px; }
+    .feature-chip .fc-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    /* Dashboard section label */
+    .section-label {
+      width: 95%;
+      max-width: 450px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4px;
+    }
+    .section-label-text {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    /* Empty state */
+    .empty-state {
+      width: 95%;
+      max-width: 450px;
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      border: 1px dashed var(--border-mid);
+      padding: 2rem 1.25rem;
+      text-align: center;
+      animation: fadeIn 0.5s ease both;
+    }
+    .empty-state-icon  { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .empty-state-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+    .empty-state-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Loading skeletons */
+    .skel-card {
+      width: 95%;
+      max-width: 450px;
+      height: 120px;
+      border-radius: var(--radius-lg);
+    }
+
+    /* Share row quick-copy pill */
+    .copy-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface-2);
+      border: 1px solid var(--border-mid);
+      border-radius: var(--radius-pill);
+      padding: 0.3rem 0.75rem 0.3rem 1rem;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      max-width: 220px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      transition: border-color var(--dur-fast);
+      flex: 1;
+    }
+    .copy-pill:hover { border-color: var(--pink); }
+    .copy-pill i     { color: var(--pink); flex-shrink: 0; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════ HEADER ════════════ -->
+<header>
+  <div class="logo">
+    <div class="logo-icon">🤝</div>
+    <span class="logo-text">Buddyz</span>
+  </div>
+  <span class="badge badge-pink">✨ Free</span>
+</header>
+
+<!-- ════════════ MAIN ════════════ -->
+<main>
+
+  <!-- ── AdSense Slot (Top) ── -->
+  <!-- ADSENSE_TOP_BANNER -->
+  <!-- <div class="ad-slot" id="ad-top">Advertisement</div> -->
+
+  <!-- ════════════ MARKETING SECTION ════════════
+       Hidden automatically (by quiz.js) when a friend opens
+       a shared quiz link (?id=...) — they should land straight
+       on the quiz, not the homepage pitch. -->
+  <div id="marketing-section">
+
+  <!-- ── Hero Card (now includes name entry — one unified card) ── -->
+  <div class="hero-card" role="main">
+    <p class="hero-eyebrow">✦ Friendship Quiz Platform</p>
+
+    <h1 class="hero-title">
+      Who Truly<br><span>Knows You?</span>
+    </h1>
+
+    <p class="hero-sub">
+      Type your name, answer 15 fun questions about yourself, and share one
+      link — find out who really knows you best.
+    </p>
+
+    <!-- Stats — ⑤ third chip is now a live Firebase counter -->
+    <div class="stats-row" aria-label="Platform stats">
+      <div class="stat-chip"><strong>15</strong> Fun Questions</div>
+      <div class="stat-chip"><strong>1 min</strong> to Set Up</div>
+      <!--
+        live-chip: the JS in quiz.js reads meta/totalQuizzes
+        and updates #stat-quizzes-count with an animated count-up.
+      -->
+      <div class="stat-chip live-chip" id="stat-quizzes-chip">
+        <strong id="stat-quizzes-count">...</strong> Quizzes Created
+      </div>
+    </div>
+
+    <!-- Steps -->
+    <div class="steps-row" role="list" aria-label="How it works">
+      <div class="step-item" role="listitem">
+        <div class="step-dot pink">✏️</div>
+        <span class="step-label">Create</span>
+      </div>
+      <div class="step-item" role="listitem">
+        <div class="step-dot purple">📤</div>
+        <span class="step-label">Share</span>
+      </div>
+      <div class="step-item" role="listitem">
+        <div class="step-dot cyan">🏆</div>
+        <span class="step-label">Reveal</span>
+      </div>
+    </div>
+
+    <!-- ── Name entry — folded into the same card, no second box ── -->
+    <div class="hero-divider" aria-hidden="true"></div>
+
+    <div id="name-container">
+      <input
+        type="text"
+        id="user-name"
+        placeholder="Enter your name to begin ✏️"
+        maxlength="40"
+        autocomplete="given-name"
+        required
+      />
+      <button id="start-quiz" class="btn btn-primary">
+        Start Quiz &nbsp;→
+      </button>
+      <p class="hero-fineprint">
+        No sign-up required · Links are private &amp; safe to share. By
+        continuing you agree to our <a href="terms.html">Terms &amp; Conditions</a>.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Feature Chips ── -->
+  <div class="feature-row" role="list">
+    <div class="feature-chip" role="listitem">
+      <div class="fc-icon">🎯</div>
+      <div class="fc-label">Personalized<br>Questions</div>
+    </div>
+    <div class="feature-chip" role="listitem">
+      <div class="fc-icon">📊</div>
+      <div class="fc-label">Live<br>Leaderboard</div>
+    </div>
+    <div class="feature-chip" role="listitem">
+      <div class="fc-icon">⚡</div>
+      <div class="fc-label">Instant<br>Sharing</div>
+    </div>
+  </div>
+
+  </div><!-- /#marketing-section -->
+
+  <!-- ── AdSense Slot (Mid) ── -->
+  <!-- ADSENSE_MID_BANNER -->
+  <!-- <div class="ad-slot" id="ad-mid">Advertisement</div> -->
+
+  <!-- ─────── Friend: Name Entry ─────── -->
+  <div id="friend-name-container" style="display: none;">
+    <div style="font-size:2rem; margin-bottom:0.25rem;">🎯</div>
+    <h3>Your Friend Challenged You!</h3>
+    <p>
+      Answer 15 questions about your friend and discover your friendship score. How well do you <em>really</em> know them?
+    </p>
+    <input
+      type="text"
+      id="friend-name"
+      placeholder="Enter your name"
+      maxlength="40"
+      autocomplete="given-name"
+    />
+    <button id="start-friend-quiz" class="btn btn-primary">
+      Start Guessing &nbsp;→
+    </button>
+  </div>
+
+  <!-- ─────── Quiz Container ─────── -->
+  <div id="quiz-container" style="display: none;">
+    <h2 class="quiz-heading" id="quiz-heading">Answer These Questions</h2>
+
+    <!-- Progress -->
+    <div class="quiz-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Quiz progress">
+      <div class="quiz-progress-fill" id="quiz-progress-fill" style="width:0%"></div>
+    </div>
+    <div class="quiz-counter" id="quiz-counter" aria-live="polite">1 / 15</div>
+
+    <div id="question-container"></div>
+
+    <div class="quiz-action-row" id="quiz-action-row">
+      <button id="next-btn"   class="btn btn-primary"  style="display:none;">Next &rarr;</button>
+      <button id="submit-btn" class="btn btn-primary"  style="display:none;">See My Score 🏆</button>
+      <!-- skip-btn is injected by quiz.js only in creator flow -->
+    </div>
+  </div>
+
+  <!-- ─────── Share Container (post-creation) ─────── -->
+  <div id="share-container" style="display: none;">
+    <div style="font-size:2.5rem; margin-bottom:0.25rem;">🎉</div>
+    <h2>Your Quiz is Live!</h2>
+    <p>Copy the link below and share it with your friends.</p>
+    <input type="text" id="quiz-link" readonly aria-label="Your quiz link" />
+    <button id="share-btn" class="btn btn-primary">
+      <i class="fa-solid fa-share-nodes"></i> &nbsp;Share Quiz
+    </button>
+  </div>
+
+  <!-- ── Dashboard (populated by home.js) — ALSO used by quiz.js
+       to show a friend's OWN result + leaderboard after they submit.
+       Must stay visible in both creator and friend modes — only the
+       section-label/FAQ below are creator-only marketing content. -->
+  <div id="result-board-container" style="display: none;" aria-label="Quiz results" aria-live="polite"></div>
+
+  <!-- ════════════ CREATOR DASHBOARD + FAQ ════════════
+       Hidden automatically (by quiz.js) when a friend opens
+       a shared quiz link — this is creator-only content. -->
+  <div id="creator-dashboard-section">
+
+  <!-- ── Past Quizzes Section Label ── -->
+  <div class="section-label" id="section-label" style="display:none;">
+    <span class="section-label-text">Your Quizzes</span>
+    <span class="dashboard-count" id="quiz-count"></span>
+  </div>
+
+  <!-- ── FAQ Section ──
+       Answers what Buddyz is and how to use it for both visitors
+       and search engines. Mirrors the FAQPage JSON-LD block above. -->
+  <section class="faq-section" aria-label="Frequently asked questions">
+    <div class="section-label" style="margin-bottom: 2px;">
+      <span class="section-label-text">FAQ</span>
+    </div>
+
+    <details class="faq-item">
+      <summary>
+        <span>What is Buddyz?</span>
+        <i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i>
+      </summary>
+      <p class="faq-answer">
+        Buddyz is a free friendship quiz platform. You answer 15 fun questions about
+        yourself, get a unique link, and send it to friends. Each friend guesses your
+        answers, and a live leaderboard shows who knows you best.
+      </p>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span>How do I create a Buddyz quiz?</span>
+        <i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i>
+      </summary>
+      <p class="faq-answer">
+        Tap "Create My Quiz", enter your name, and answer 15 quick questions about your
+        habits, tastes and memories. Buddyz instantly generates a unique link you can share
+        with friends — no sign-up or download required.
+      </p>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span>Is Buddyz free to use?</span>
+        <i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i>
+      </summary>
+      <p class="faq-answer">
+        Yes — Buddyz is completely free, with no hidden fees, subscriptions, or in-app
+        purchases. Anyone with the link can take a quiz at no cost.
+      </p>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span>Do my friends need to download anything?</span>
+        <i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i>
+      </summary>
+      <p class="faq-answer">
+        No. Buddyz runs entirely in the browser. Friends just open your link, type their
+        name, answer the questions, and instantly see their score and tier on the
+        leaderboard.
+      </p>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span>How long does my quiz link stay active?</span>
+        <i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i>
+      </summary>
+      <p class="faq-answer">
+        Each quiz link stays active for 7 days from creation. After that, it expires
+        automatically and friends will see an expiry screen instead of the quiz.
+      </p>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span>Is my data private on Buddyz?</span>
+        <i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i>
+      </summary>
+      <p class="faq-answer">
+        Yes. Buddyz doesn't require accounts, passwords, or personal data beyond the name
+        you choose to enter. Quiz answers and leaderboard scores are only accessible to
+        people who have your unique quiz link.
+      </p>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span>Who created Buddyz?</span>
+        <i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i>
+      </summary>
+      <p class="faq-answer">
+        Buddyz was created by <a href="about.html" style="color: var(--pink); font-weight: 700;">Divine Nosakhare</a>,
+        the Founder &amp; CEO of Buddyz — a self-taught developer from Nigeria who builds
+        the entire platform using JavaScript and Firebase.
+      </p>
+    </details>
+  </section>
+
+  </div><!-- /#creator-dashboard-section -->
+
+  <!-- ── AdSense Slot (Bottom) ── -->
+  <!-- ADSENSE_BOTTOM_BANNER -->
+  <!-- <div class="ad-slot" id="ad-bottom">Advertisement</div> -->
+
+</main>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer>
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="disclaimer.html">Disclaimer</a>
+    <a href="feedback.html">Feedback</a>
+    <a href="terms.html">Terms</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="social-links">
+    <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="#" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+  </div>
+  <p class="copyright">&copy; 2025 Buddyz. All Rights Reserved.</p>
+</footer>
+
+<!-- ════════════ SCRIPTS ════════════ -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey:            "AIzaSyAVR8OxIwbMkasKfjTVQOpi69Ikw6LraSo",
+    authDomain:        "buddy-ea6cd.firebaseapp.com",
+    projectId:         "buddy-ea6cd",
+    storageBucket:     "buddy-ea6cd.appspot.com",
+    messagingSenderId: "947901635950",
+    appId:             "1:947901635950:web:dd11c3a278eb18768e357f",
+    databaseURL:       "https://buddy-ea6cd-default-rtdb.europe-west1.firebasedatabase.app"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+</script>
+
+<script src="quiz.js"></script>
+<script src="home.js"></script>
+
+</body>
+</html>
