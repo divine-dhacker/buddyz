@@ -222,6 +222,13 @@ main {
   gap: 16px;
 }
 
+#marketing-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* ── Card ── */
 .card {
   background: var(--surface);
@@ -244,7 +251,7 @@ main {
   width: 95%;
   max-width: 450px;
   padding: 2rem 1.5rem 1.75rem;
-  margin-top: 6px;
+  margin: 6px auto 0;
   text-align: center;
   animation: fadeUp 0.5s var(--ease-out) both;
   position: relative;
@@ -285,8 +292,8 @@ main {
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: 2.1rem;
-  font-weight: 900;
+  font-size: 2.8rem;
+  font-weight: 800;
   line-height: 1.15;
   color: var(--text-primary);
   margin-bottom: 0.75rem;
@@ -434,9 +441,9 @@ input[type="text"] {
   max-width: 350px;
   padding: 0.9rem 1.25rem;
   background: var(--surface);
-  border: 1.5px solid var(--border-mid);
+  border: 2px solid var(--pink);
   border-radius: var(--radius-pill);
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 1rem;
   color: var(--text-primary);
   outline: none;
@@ -445,7 +452,10 @@ input[type="text"] {
     box-shadow var(--dur-mid);
   display: block;
 }
-input[type="text"]::placeholder { color: var(--text-light); }
+input[type="text"]::placeholder {
+  color: var(--text-light);
+  font-family: var(--font-display);
+}
 input[type="text"]:focus {
   border-color: var(--pink);
   box-shadow: 0 0 0 4px rgba(255, 45, 120, 0.10);
@@ -1403,7 +1413,7 @@ footer {
     max-width: 560px;
   }
 
-  .hero-title { font-size: 2.6rem; }
+  .hero-title { font-size: 3.2rem; }
   .quiz-options { gap: 14px; }
 
   .share-sheet { max-width: 480px; }

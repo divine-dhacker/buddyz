@@ -241,11 +241,22 @@ document.addEventListener('DOMContentLoaded', () => {
           </td>
         ` : '<td></td>';
 
+        const viewBtn = r.details ? `
+          <button class="view-answers-btn" data-key="${key}"
+            title="View ${escapeHTML(r.friendName)}'s answers"
+            aria-label="View ${escapeHTML(r.friendName)}'s answers">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+        ` : '';
+
         return `
           <tr class="${rankCls}">
             <td class="rank-cell ${rank <= 3 ? 'rank-' + rank : ''}">${rankIcon}</td>
             <td>
-              <div style="font-weight:600; font-size:0.88rem;">${escapeHTML(r.friendName)}</div>
+              <div style="display:flex; align-items:center; gap:6px;">
+                <div style="font-weight:600; font-size:0.88rem;">${escapeHTML(r.friendName)}</div>
+                ${viewBtn}
+              </div>
               <div style="margin-top:3px;"><span class="tier-badge ${tier.cls}">${tier.icon} ${tier.label}</span></div>
             </td>
             <td>
@@ -295,6 +306,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     shareRow.querySelector('.copy-pill').addEventListener('click', () => copyText(quizLink, 'Link'));
     shareRow.querySelector('.btn-ghost').addEventListener('click', () => copyText(quizLink, 'Link'));
+
+    // View answers
+    tableWrap.querySelectorAll('.view-answers-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const entry = Object.entries(quizData.responses).find(([key]) => key === btn.dataset.key);
+        if (entry && typeof openAnswerDetailSheet === 'function') {
+          window.creatorName = quizData.name; // Set global for image sharing
+          openAnswerDetailSheet(entry[1]);
+        }
+      });
+    });
 
     if (isCreator) {
       const delQuizBtn = headerDiv.querySelector('.delete-quiz-btn');

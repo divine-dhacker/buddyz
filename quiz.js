@@ -989,6 +989,11 @@ async function generateScoreCard({ friendName, creatorName, score, max, tierLabe
   ctx.fillText('SCORE', cx, cy + 60);
   if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
 
+  /* Result Summary */
+  ctx.font      = `600 32px ${BODY}`;
+  ctx.fillStyle = 'rgba(255,255,255,0.9)';
+  ctx.fillText(`✅ ${score} Correct  |  ❌ ${max - score} Wrong`, cx, cy + 130);
+
   /* ── Names — clear gap below the ring ── */
   const namesY = cy + r + 110;
   ctx.font      = `600 38px ${BODY}`;
@@ -1192,6 +1197,9 @@ function openAnswerDetailSheet(response) {
       <div class="answer-detail-list">
         ${rowsHTML || '<p style="text-align:center; color:var(--text-muted); padding:1rem;">No answer breakdown available for this response.</p>'}
       </div>
+      <button class="btn btn-primary" id="ad-share-img" style="max-width:100%; margin-top:1rem; gap:8px;">
+        <i class="fa-solid fa-camera"></i> Share Result as Image
+      </button>
       <button class="btn btn-outline" id="ad-close" style="max-width:100%; margin-top:0.75rem;">
         Close
       </button>
@@ -1207,6 +1215,41 @@ function openAnswerDetailSheet(response) {
     setTimeout(() => overlay.remove(), 200);
   };
   overlay.querySelector('#ad-close').addEventListener('click', close);
+
+  overlay.querySelector('#ad-share-img').addEventListener('click', async () => {
+    const btn = overlay.querySelector('#ad-share-img');
+    const original = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating…';
+
+    try {
+      const quizID = window.friendQuizID || (new URLSearchParams(window.location.search).get('id'));
+      const quizLink = `${window.location.origin}${window.location.pathname}?id=${quizID}`;
+
+      // We need creatorName. In friend flow it's in a variable, but in dashboard it might be harder.
+      // However, we can try to get it from the page or a global.
+      // For now, let's assume we can find it.
+      const creatorName = window.creatorName || 'Friend';
+
+      const canvas = await generateScoreCard({
+        friendName:  response.friendName,
+        creatorName: creatorName,
+        score:       response.score,
+        max:         response.possiblePoints,
+        tierLabel:   tier.label,
+        tierIcon:    tier.icon,
+        quizLink:    quizLink
+      });
+      openImageShareSheet(canvas, response.friendName, creatorName, quizLink);
+    } catch (err) {
+      console.error(err);
+      showToast('Error generating image', 'error');
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = original;
+    }
+  });
+
   overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
   const onKey = e => {
     if (e.key === 'Escape') { close(); document.removeEventListener('keydown', onKey); }
@@ -2052,12 +2095,14 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    /* Edit button — opens inline edit modal for question text + options */
+    /* Edit button — toggles inline edit mode directly on the card */
     const editBtn = qContainer.querySelector('#edit-question-btn');
     if (editBtn) {
-      editBtn.addEventListener('click', () => openEditModal(q, creatorName, () => {
-        renderQuestion(questions, index, total);
-      }));
+      editBtn.addEventListener('click', () => {
+        enterInlineEditMode(q, creatorName, qContainer, () => {
+          renderQuestion(questions, index, total);
+        });
+      });
     }
 
     qContainer.querySelectorAll('.quiz-option').forEach(el => {
@@ -2078,7 +2123,10 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProgress(index + 1, total);
     const isLast = index >= total - 1;
     if (nextBtn)   nextBtn.style.display   = isLast ? 'none'  : 'block';
-    if (submitBtn) submitBtn.style.display = isLast ? 'block' : 'none';
+    if (submitBtn) {
+      submitBtn.style.display = isLast ? 'block' : 'none';
+      if (!window.friendQuizID && isLast) submitBtn.textContent = 'Create My Quiz ✨';
+    }
 
     /* Inject or update Skip button (creator only — not in friend flow) */
     const actionRow = document.getElementById('quiz-action-row');
@@ -2101,118 +2149,88 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── Handle Skip (creator only) ── */
   function handleSkip() {
     if (window.friendQuizID) return;
-    /* Push a skipped marker so the answer array stays index-aligned */
+    /* Select first option and move on so the question auto completes */
+    const firstOption = quizQuestions[currentIndex].options[0];
     userAnswers.push({
       question: quizQuestions[currentIndex].question,
-      answer:   '__SKIPPED__',
+      answer:   firstOption,
       color:    quizQuestions[currentIndex].color,
     });
     currentIndex++;
     AudioEngine.advance();
     renderQuestion(quizQuestions, currentIndex, TOTAL_QUESTIONS);
-    showToast('Question skipped — friends won\'t see this one 👍', '');
+    showToast('Question skipped — auto-selected first option 👍', '');
   }
 
-  /* ── Edit Modal (creator only) ──
-     Opens a bottom-sheet-style modal that lets the creator
-     rewrite the question text and/or any of the four options.
-     On Save, mutates the question object in-place and re-renders. */
-  function openEditModal(q, name, onSave) {
-    const existing = document.getElementById('buddyz-edit-modal');
-    if (existing) existing.remove();
+  /* ── Inline Edit Mode (creator only) ──
+     Replaces the display content of the card with input fields
+     so the creator can edit the question text and options
+     directly "right in the quiz". */
+  function enterInlineEditMode(q, name, qContainer, onSave) {
+    const card = qContainer.querySelector('#question-card');
+    if (!card) return;
 
     const letters = ['A', 'B', 'C', 'D'];
-    const optionsHTML = q.options.map((opt, i) => `
-      <div class="edit-option-row">
-        <span class="edit-option-letter">${letters[i]}</span>
-        <input
-          type="text"
-          class="edit-option-input"
-          id="edit-opt-${i}"
-          value="${escapeHTML(opt)}"
-          maxlength="120"
-          placeholder="Option ${letters[i]}"
-          aria-label="Option ${letters[i]}"
-        />
-      </div>
-    `).join('');
-
-    /* Strip the {{CREATOR}} replacement so the editor shows the template */
+    /* Strip the {{CREATOR}} replacement for editing */
     const rawQuestion = q.question.replace(new RegExp(escapeHTML(name), 'g'), '{{CREATOR}}');
 
-    const overlay = document.createElement('div');
-    overlay.id        = 'buddyz-edit-modal';
-    overlay.className = 'edit-modal-overlay';
-    overlay.setAttribute('role', 'dialog');
-    overlay.setAttribute('aria-modal', 'true');
-    overlay.setAttribute('aria-label', 'Edit question');
+    card.innerHTML = `
+      <div class="edit-modal-title" style="color:#fff; margin-bottom:1rem;">✏️ Edit Mode</div>
 
-    overlay.innerHTML = `
-      <div class="edit-modal" role="document">
-        <div class="edit-modal-title">✏️ Edit Question</div>
+      <div class="edit-field-group">
+        <label class="edit-field-label" style="color:rgba(255,255,255,0.8);">Question</label>
+        <textarea
+          class="edit-textarea"
+          id="inline-edit-q"
+          rows="3"
+          maxlength="200"
+          style="background:rgba(255,255,255,0.9); border:none;"
+        >${escapeHTML(rawQuestion)}</textarea>
+      </div>
 
-        <div class="edit-field-group">
-          <label class="edit-field-label" for="edit-question-text">Question</label>
-          <textarea
-            class="edit-textarea"
-            id="edit-question-text"
-            rows="3"
-            maxlength="200"
-            placeholder="Use {{CREATOR}} for the person's name"
-            aria-label="Question text"
-          >${escapeHTML(rawQuestion)}</textarea>
-        </div>
+      <div class="edit-field-group">
+        <label class="edit-field-label" style="color:rgba(255,255,255,0.8);">Options</label>
+        ${q.options.map((opt, i) => `
+          <div class="edit-option-row">
+            <span class="edit-option-letter">${letters[i]}</span>
+            <input
+              type="text"
+              class="edit-option-input"
+              id="inline-edit-opt-${i}"
+              value="${escapeHTML(opt)}"
+              maxlength="120"
+              style="background:rgba(255,255,255,0.9); border:none;"
+            />
+          </div>
+        `).join('')}
+      </div>
 
-        <div class="edit-field-group">
-          <label class="edit-field-label">Options</label>
-          ${optionsHTML}
-        </div>
-
-        <div class="edit-modal-actions">
-          <button class="btn btn-outline" id="edit-cancel">Cancel</button>
-          <button class="btn btn-primary" id="edit-save">Save Changes</button>
-        </div>
+      <div class="edit-modal-actions">
+        <button class="btn btn-outline" id="inline-edit-cancel" style="background:rgba(255,255,255,0.2); border-color:rgba(255,255,255,0.4); color:#fff;">Cancel</button>
+        <button class="btn btn-primary" id="inline-edit-save" style="background:#fff; color:var(--text-primary); box-shadow:none;">Save Changes</button>
       </div>
     `;
 
-    document.body.appendChild(overlay);
-    /* Focus the question field */
-    requestAnimationFrame(() => {
-      const ta = overlay.querySelector('#edit-question-text');
-      if (ta) { ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); }
+    const ta = card.querySelector('#inline-edit-q');
+    ta.focus();
+    ta.setSelectionRange(ta.value.length, ta.value.length);
+
+    card.querySelector('#inline-edit-cancel').addEventListener('click', () => {
+      onSave(); /* Just re-renders to exit edit mode */
     });
 
-    const close = () => {
-      overlay.style.transition = 'opacity 0.18s';
-      overlay.style.opacity    = '0';
-      setTimeout(() => overlay.remove(), 180);
-    };
+    card.querySelector('#inline-edit-save').addEventListener('click', () => {
+      const newQ = ta.value.trim();
+      if (!newQ) { showToast('Question can\'t be empty.', 'error'); return; }
 
-    overlay.querySelector('#edit-cancel').addEventListener('click', close);
-    overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+      const newOpts = [0, 1, 2, 3].map(i => card.querySelector(`#inline-edit-opt-${i}`).value.trim());
+      if (newOpts.some(o => !o)) { showToast('All options required.', 'error'); return; }
 
-    overlay.querySelector('#edit-save').addEventListener('click', () => {
-      const newQ = overlay.querySelector('#edit-question-text').value.trim();
-      if (!newQ) {
-        showToast('Question text can\'t be empty.', 'error');
-        return;
-      }
-      const newOpts = [0, 1, 2, 3].map(i => {
-        const val = (overlay.querySelector(`#edit-opt-${i}`)?.value || '').trim();
-        return val;
-      });
-      if (newOpts.some(o => !o)) {
-        showToast('All four options are required.', 'error');
-        return;
-      }
-      /* Mutate in place — the question object is the same reference used in quizQuestions[] */
       q.question = newQ;
       q.options  = newOpts;
       AudioEngine.success();
-      close();
-      showToast('Question updated ✅', 'success');
-      /* Re-render so the card shows the new text */
-      if (onSave) onSave();
+      showToast('Updated ✅', 'success');
+      onSave();
     });
   }
 
@@ -2240,6 +2258,7 @@ document.addEventListener('DOMContentLoaded', () => {
         quizContainer.style.display = 'flex';
         const heading = quizContainer.querySelector('.quiz-heading');
         if (heading) heading.textContent = 'Answer These Questions';
+        quizContainer.scrollIntoView({ behavior: 'smooth' });
       }
 
       renderQuestion(quizQuestions, currentIndex, TOTAL_QUESTIONS);
@@ -2286,13 +2305,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const creatorQuizID = generateQuizID();
 
-      /* ④  Include expiresAt: 7 days from now. Filter skipped questions out of
-             the stored answers so friends only see real questions. */
-      const answersToStore = userAnswers.filter(a => a.answer !== '__SKIPPED__');
+      /* ④  Include expiresAt: 7 days from now. */
       const payload = {
         name:      creatorName,
-        answers:   answersToStore,
-        maxScore:  answersToStore.length,
+        answers:   userAnswers,
+        maxScore:  userAnswers.length,
         createdAt: Date.now(),
         expiresAt: Date.now() + (7 * 24 * 60 * 60 * 1000),
       };
@@ -2349,6 +2366,29 @@ document.addEventListener('DOMContentLoaded', () => {
   if (quizID) {
     saveQuiz(quizID);
     window.friendQuizID = quizID;
+
+    /* Prevent retakes: if User B has already taken this quiz, go to results */
+    const storedResult = localStorage.getItem('taken_' + quizID);
+    if (storedResult) {
+      if (nameContainer) nameContainer.style.display = 'none';
+      if (friendNameContainer) friendNameContainer.style.display = 'none';
+      const marketingSection = document.getElementById('marketing-section');
+      const dashboardSection = document.getElementById('creator-dashboard-section');
+      if (marketingSection) marketingSection.style.display = 'none';
+      if (dashboardSection) dashboardSection.style.display = 'none';
+
+      let fs = null, fm = null;
+      if (storedResult !== 'true') {
+        try {
+          const parsed = JSON.parse(storedResult);
+          fs = parsed.score;
+          fm = parsed.max;
+          window.friendName = parsed.name;
+        } catch(e) {}
+      }
+      displayResultBoard(quizID, true, fs, fm);
+      return;
+    }
 
     if (nameContainer)       nameContainer.style.display       = 'none';
     if (friendNameContainer) friendNameContainer.style.display = 'flex';
@@ -2567,6 +2607,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         database.ref(`quizzes/${quizID}/responses`).push(responsePayload)
           .then(() => {
+            localStorage.setItem('taken_' + quizID, JSON.stringify({
+              score: score,
+              max: possiblePoints,
+              name: window.friendName
+            }));
             if (quizContainer) quizContainer.style.display = 'none';
             displayResultBoard(quizID, true, score, possiblePoints);
           })

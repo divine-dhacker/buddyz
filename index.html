@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <!-- ════════════ GOOGLE ANALYTICS (GA4) ════════════
-       Replace G-XXXXXXXXXX with your real Measurement ID
+       Replace G-G8MDM667X3 with your real Measurement ID
        from analytics.google.com (Admin > Data Streams > Web).
        The same ID must be pasted into ALL pages. -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G8MDM667X3"></script>
@@ -177,7 +177,7 @@
   <meta name="theme-color" content="#FF2D78">
 
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤝</text></svg>">
+  <link rel="icon" href="previews.png">
 
   <link rel="stylesheet" href="styles.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -230,6 +230,8 @@
       gap: 8px;
       width: 95%;
       max-width: 450px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .feature-chip {
       flex: 1;
@@ -240,6 +242,7 @@
       text-align: center;
       box-shadow: var(--shadow-xs);
       animation: fadeUp 0.55s var(--ease-out) both;
+      margin-top: 2.5rem;
     }
     .feature-chip:nth-child(2) { animation-delay: 0.06s; }
     .feature-chip:nth-child(3) { animation-delay: 0.12s; }
@@ -324,7 +327,7 @@
     .copy-pill i     { color: var(--pink); flex-shrink: 0; }
   </style>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1237477643833389"
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=YOUR_ADSENSE_ID"
      crossorigin="anonymous"></script>
   
 </head>
@@ -354,15 +357,13 @@
 
   <!-- ── Hero Card (now includes name entry — one unified card) ── -->
   <div class="hero-card" role="main">
-    <p class="hero-eyebrow">✦ Friendship Quiz Platform</p>
 
     <h1 class="hero-title">
       Who Truly<br><span>Knows You?</span>
     </h1>
 
     <p class="hero-sub">
-      Type your name, answer 15 fun questions about yourself, and share one
-      link — find out who really knows you best.
+      Answer 15 fun questions and share your link to find out who truly knows you best.
     </p>
 
     <!-- Stats — ⑤ third chip is now a live Firebase counter -->
